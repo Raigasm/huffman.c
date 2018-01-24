@@ -1,4 +1,4 @@
-#huffman.c
+# huffman.c
 
 compression and decompression utilities - based on huffman encoding
 
@@ -38,13 +38,25 @@ uses a unique file extension: `.huff` for compressed files
 
 ## Reference
 
-[https://www.geeksforgeeks.org/greedy-algorithms-set-3-huffman-coding/](Huffman Coding on Geeks for Geeks)
+<iframe width="1120" height="620" src="https://www.youtube.com/embed/0kNXhFIEd_w" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+[Youtube - Huffman Coding by Geeks for Geeks](https://www.youtube.com/watch?v=0kNXhFIEd_w)
+
+[Huffman Coding on Geeks for Geeks](https://www.geeksforgeeks.org/greedy-algorithms-set-3-huffman-coding/)
 
 ## Structure
 
 * Makefile
-* huffman.c
-* huffman.tests.c
+- [huffman.c](#huffmanc)
+  - [The `.huff` File Format](#the-huff-file-format)
+  - [Instructions](#instructions)
+    - [Compilation](#compilation)
+    - [Usage](#usage)
+  - [Tests](#tests)
+  - [Reference](#reference)
+  - [Structure](#structure)
+  - [Plans](#plans)
+  - [3rd Party Libraries, Licensing, Credits etc.](#3rd-party-libraries-licensing-credits-etc)
 
 ## Plans
 
@@ -55,6 +67,6 @@ uses a unique file extension: `.huff` for compressed files
 
 The following 3rd party libraries were used:
 
-* Testing and Building -
+* CEEDLING -
 * JSON - [Jansson](http://www.digip.org/jansson/)
 *
