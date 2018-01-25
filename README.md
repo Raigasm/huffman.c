@@ -15,13 +15,17 @@ uses a unique file extension: `.huff` for compressed files
       "extension": "txt",
       "size": "12804"
     },
+    "table": {
+      characters: []
+      frequencies: []
+    },
     "data": "<ENCODED DATA>"
   }
 ```
 
 ## Instructions
 
-### Compilation
+### Building from Source
 
 * TODO: ceedling
 
@@ -38,7 +42,7 @@ uses a unique file extension: `.huff` for compressed files
 
 ## Reference
 
-<iframe width="1120" height="620" src="https://www.youtube.com/embed/0kNXhFIEd_w" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+[![Huffman Coding by Geeks for Geeks](https://img.youtube.com/vi/0kNXhFIEd_w/0.jpg)](https://www.youtube.com/watch?v=0kNXhFIEd_w)
 
 [Youtube - Huffman Coding by Geeks for Geeks](https://www.youtube.com/watch?v=0kNXhFIEd_w)
 
@@ -47,26 +51,58 @@ uses a unique file extension: `.huff` for compressed files
 ## Structure
 
 * Makefile
+
 - [huffman.c](#huffmanc)
   - [The `.huff` File Format](#the-huff-file-format)
   - [Instructions](#instructions)
-    - [Compilation](#compilation)
+    - [Building from Source](#building-from-source)
     - [Usage](#usage)
   - [Tests](#tests)
   - [Reference](#reference)
   - [Structure](#structure)
   - [Plans](#plans)
+  - [MinHeap module](#minheap-module)
+    - [Binary Heaps in General](#binary-heaps-in-general)
+    - [Min Heaps](#min-heaps)
   - [3rd Party Libraries, Licensing, Credits etc.](#3rd-party-libraries-licensing-credits-etc)
+    - [Tools](#tools)
+    - [Libraries](#libraries)
 
 ## Plans
 
-* [UML diagrams etc]()
-* [Tests to Write]()
+TODO: Mindnode export
+
+## MinHeap module
+
+### Binary Heaps in General
+
+* [Introduction to Binary Heaps (MaxHeaps) - YouTube](https://www.youtube.com/watch?v=WCm3TqScBM8)
+  * [![Intoduction to Binary Heaps](https://img.youtube.com/vi/WCm3TqScBM8/0.jpg)](https://www.youtube.com/watch?v=WCm3TqScBM8)
+* [Data Structures: Heaps - YouTube](https://www.youtube.com/watch?v=t0Cq6tVNRBA)
+
+  * [![Title](https://img.youtube.com/vi/t0Cq6tVNRBA/0.jpg)](https://www.youtube.com/watch?v=t0Cq6tVNRBA)
+
+* [Binary heap - Wikipedia](https://en.wikipedia.org/wiki/Binary_heap)
+
+### Min Heaps
+
+* [Min Heap Intro PDF](https://www.cs.cmu.edu/~tcortina/15-121sp10/Unit06B.pdf)
+* [Heap | How to create a Min Heap - step by step guide - YouTube](https://www.youtube.com/watch?v=oAYtNV6vy-k&t=71s)
 
 ## 3rd Party Libraries, Licensing, Credits etc.
 
-The following 3rd party libraries were used:
+The following 3rd party libraries and technologies were used:
 
-* CEEDLING -
-* JSON - [Jansson](http://www.digip.org/jansson/)
+### Tools
+
+* CEEDLING - Build system and toolchain for C [Ceedling - Throw the Switch](http://www.throwtheswitch.org/ceedling), which includes:
+
+  * [Unity - Curiously Powerful Unit Testing in C for C](https://github.com/ThrowTheSwitch/Unity/)
+  * [CMock - Automagical generation of stubs and mocks for Unity Tests](https://github.com/ThrowTheSwitch/cmock)
+  * [CException - Lightweight exception handling for C](https://github.com/ThrowTheSwitch/CException)
+
+### Libraries
+
+* JSON: [Jansson](http://www.digip.org/jansson/)\*
+* Logging: TODO: find logging
 *
