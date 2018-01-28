@@ -1,0 +1,14 @@
+{
+  "saveAndRun": {
+    "commands": [
+      {
+        "match": "*.c",
+        "cmd": "make test"
+      },
+      {
+        "match": "*.h",
+        "cmd": "make test"
+      }
+    ]
+  }
+}
