@@ -5,9 +5,9 @@ CC=gcc
 # options I'll pass to the compiler.
 CFLAGS=-std=c99 -Wall -O3 -g
 
-all: huffman-codec
+all: clean huffman-codec
 
-test: log.o main.c src/huffman.c test/test_main.c
+test: clean log.o main.c src/huffman.c test/test_main.c
 	$(CC) $(CFLAGS) main.c src/huffman.c test/test_main.c test/test_huffman.c -o bin/huffman-codec
 
 huffman-codec: log.o src/main.c src/huffman.c
@@ -17,4 +17,4 @@ log.o: src/log.c
 	$(CC) $(CFLAGS) src/log.c -c -DLOG_USE_COLOR
 
 clean:
-	rm -v bin/* && rm -v *o huffman-codec
+	rm -rvf *o huffman-codec *out bin/*
