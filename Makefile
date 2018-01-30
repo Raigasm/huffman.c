@@ -7,26 +7,11 @@ CFLAGS=-std=c99 -Wall -O3 -g
 
 all: huffman-codec
 
-test: main.o huffman-codec.o min-heap.o character_frequency.o huf_file.o test/test_main.c 
-		$(CC) test/test_main.c main.o huffman-codec.o min-heap.o character_frequency.o huf_file.o -o bin/huffman-codec
+test: main.c src/huffman.c test/test_main.c 
+	$(CC) $(CFLAGS) main.c src/huffman.c test/test_main.c test/test_huffman.c -o bin/huffman-codec 
 
-huffman-codec: main.o huffman-codec.o min-heap.o character_frequency.o huf_file.o 
-    $(CC) main.o huffman-codec.o min-heap.o character_frequency.o huf_file.o -o bin/huffman-codec
-
-main.o: src/main.c
-    $(CC) $(CFLAGS) src/main.c
-
-huf_file.o: src/huf_file.c
-    $(CC) $(CFLAGS) src/huf_file.c
-
-character_frequency.o: src/character_frequency.c
-	$(CC) $(CFLAGS) src/character_frequency.c
-
-min-heap.o: src/min-heap.c
-	$(CC) $(CFLAGS) src/min-heap.c 
-
-huffman-codec.o: huffman-codec.c
-	$(CC) $(CFLAGS) huffman-codec.c
+huffman-codec: src/main.c
+	$(CC) $(CFLAGS) src/main.c src/huffman.c -o bin/huffman-codec
 
 clean:
-    rm -v *o huffman-codec && rm -v bin/*
+	rm -v bin/* && rm -v *o huffman-codec	

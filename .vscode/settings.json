@@ -10,5 +10,10 @@
         "cmd": "make test"
       }
     ]
-  }
+  },
+  "cSpell.words": [
+    "heap",
+    "heapify",
+    "min"
+  ]
 }

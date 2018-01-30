@@ -1,12 +1,7 @@
 #include "main.h"
+#include "huffman.h"
 
 int main(int argc, char *argv[])
 {
-  return huffmanMain(argc, argv);
-}
-
-int huffmanMain(int argc, char *argv[])
-{
-  printf("Huffman\n");
-  return 0;
+  return huffman_main(argc, argv);
 }

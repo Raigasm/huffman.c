@@ -4,6 +4,25 @@ compression and decompression utilities - based on huffman encoding
 
 uses a unique file extension: `.huff` for compressed files
 
+## Contents
+
+- [huffman.c](#huffmanc)
+  - [Contents](#contents)
+  - [The `.huff` File Format](#the-huff-file-format)
+  - [Instructions](#instructions)
+    - [Building from Source](#building-from-source)
+    - [Usage](#usage)
+  - [Tests](#tests)
+  - [Reference](#reference)
+  - [Structure](#structure)
+  - [Plans](#plans)
+  - [MinHeap module](#minheap-module)
+    - [Binary Heaps in General](#binary-heaps-in-general)
+    - [Min Heaps](#min-heaps)
+  - [3rd Party Libraries, Licensing, Credits etc.](#3rd-party-libraries-licensing-credits-etc)
+    - [Tools](#tools)
+    - [Libraries](#libraries)
+
 ## The `.huff` File Format
 
 * minified JSON object, e.g:
@@ -27,7 +46,9 @@ uses a unique file extension: `.huff` for compressed files
 
 ### Building from Source
 
-* TODO: ceedling
+```shell
+make all && /bin/hoffman-encode #arguments
+```
 
 ### Usage
 
@@ -37,6 +58,10 @@ uses a unique file extension: `.huff` for compressed files
 * `./huffman decode </input/file.huf> </output-path>` - self-explanatory
 
 ## Tests
+
+```shell
+make test && /bin/hoffman-encode #arguments
+```
 
 * TODO: run tests instructions
 
@@ -51,22 +76,6 @@ uses a unique file extension: `.huff` for compressed files
 ## Structure
 
 * Makefile
-
-- [huffman.c](#huffmanc)
-  - [The `.huff` File Format](#the-huff-file-format)
-  - [Instructions](#instructions)
-    - [Building from Source](#building-from-source)
-    - [Usage](#usage)
-  - [Tests](#tests)
-  - [Reference](#reference)
-  - [Structure](#structure)
-  - [Plans](#plans)
-  - [MinHeap module](#minheap-module)
-    - [Binary Heaps in General](#binary-heaps-in-general)
-    - [Min Heaps](#min-heaps)
-  - [3rd Party Libraries, Licensing, Credits etc.](#3rd-party-libraries-licensing-credits-etc)
-    - [Tools](#tools)
-    - [Libraries](#libraries)
 
 ## Plans
 
@@ -103,6 +112,8 @@ The following 3rd party libraries and technologies were used:
 
 ### Libraries
 
-* JSON: [Jansson](http://www.digip.org/jansson/)\*
+Format is Use/Purpose - Name (License)
+
+* [ ] JSON - Parson (MIT) - https://github.com/kgabis/parson
 * Logging: TODO: find logging
 *
