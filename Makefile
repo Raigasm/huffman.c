@@ -3,7 +3,7 @@
 CC=gcc
 # Hey!, I am comment number 2. I want to say that CFLAGS will be the
 # options I'll pass to the compiler.
-CFLAGS=-std=c99 -Wall -O3 -g -DLOG_USE_COLOR
+CFLAGS=-std=c99 -Wall -O3 -g
 
 all: huffman-codec
 
@@ -14,7 +14,7 @@ huffman-codec: log.o src/main.c src/huffman.c
 	$(CC) $(CFLAGS) log.o src/main.c src/huffman.c -o bin/huffman-codec
 
 log.o: src/log.c
-	$(CC) $(CFLAGS) src/log.c -o log.o
+	$(CC) $(CFLAGS) src/log.c -c -DLOG_USE_COLOR
 
 clean:
 	rm -v bin/* && rm -v *o huffman-codec

@@ -18,14 +18,7 @@ struct huffman_config
 int huffman_main(int argc, char *argv[])
 {
   // print extra arguments
-  printf("huffman_main executed with %i arguments\n\targuments:\n\t\t", (argc - 1));
-
-  int i = 1;
-  while (argv[i] != NULL)
-  {
-    printf("%s ", argv[i++]);
-  }
-  printf("\n");
+  log_debug("huffman_main executed with %i arguments: %s %s", (argc - 1), argv[1], argv[2]);
 
   huffman_config *config;
   config = parseArgs(argc, argv);
@@ -37,7 +30,6 @@ int huffman_main(int argc, char *argv[])
 
 huffman_config *parseArgs(int argc, char *argv[])
 {
-  printf("parseArgs\n");
   huffman_config *config = (huffman_config *)malloc(sizeof(huffman_config));
   config->inPath = (char *)malloc(256);
   config->in = (char *)malloc(HUFFMAN_FILE_MAX_SIZE); // TODO: determine max size of input and edit config.in initializing
@@ -49,12 +41,16 @@ huffman_config *parseArgs(int argc, char *argv[])
   strcpy(config->in, "RAW\nRAW\nRAW\nRAW\nRAW\nRAW\nRAW\nRAW\nRAW\nRAW\nRAW\nRAW\nRAW\nRAW\n");
   strcpy(config->out, "CONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\n");
   config->action = 1;
+
+  log_debug("parseArgs:\tin: %s\tout:%s", config->inPath, config->outPath);
   return config;
 }
 
 char *convert(huffman_config *config)
 {
-  printf("huffman_convert:\n\t");
+  log_debug("huffman_convert");
+
+  printf("\t");
   switch (config->action)
   {
   case 0:
@@ -78,6 +74,6 @@ char *convert(huffman_config *config)
 
 int save(char *output, char *outputPath)
 {
-  printf("huffman_save:\n\tsaving to %s\n", outputPath);
+  log_debug("huffman_save:\tsaving to %s\n", outputPath);
   return 0;
 }
