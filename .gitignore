@@ -159,3 +159,4 @@ bin/*
 *.o
 *.out.dSYM
 *.o.dSYM
+g4g-example.c

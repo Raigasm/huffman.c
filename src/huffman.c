@@ -50,7 +50,7 @@ char *convert(huffman_config *config)
 {
   log_debug("huffman_convert");
 
-  printf("\t");
+  printf("\t  ");
   switch (config->action)
   {
   case 0:
