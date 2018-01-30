@@ -6,8 +6,12 @@
     {
       "label": "make all",
       "type": "shell",
-      "command": "make all"
+      "command": "make all && /bin/huffman-codec"
     },
-    { "label": "make test", "type": "shell", "command": "make test" }
+    {
+      "label": "make test",
+      "type": "shell",
+      "command": "make test && /bin/huffman-codec"
+    }
   ]
 }

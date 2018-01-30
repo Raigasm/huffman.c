@@ -3,17 +3,13 @@
     "commands": [
       {
         "match": "*.c",
-        "cmd": "make test"
+        "cmd": "make test && /bin/huffman-codec"
       },
       {
         "match": "*.h",
-        "cmd": "make test"
+        "cmd": "make test && /bin/huffman-codec"
       }
     ]
   },
-  "cSpell.words": [
-    "heap",
-    "heapify",
-    "min"
-  ]
+  "cSpell.words": ["heap", "heapify", "min"]
 }

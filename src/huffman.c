@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-const int HUFFMAN_FILE_MAX_SIZE = 2 ^ 24; // max size of input/output files
+const int HUFFMAN_FILE_MAX_SIZE = 1048576; // max size of input/output files
 
 struct huffman_config
 {
@@ -26,9 +26,12 @@ int huffman_main(int argc, char *argv[])
   }
   printf("\n");
 
-  huffman_config *config = parseArgs(argc, argv);
+  huffman_config *config;
+  config = parseArgs(argc, argv);
   convert(config);
-  return save(config->out, config->outPath);
+  save(config->out, config->outPath);
+
+  return 0;
 }
 
 huffman_config *parseArgs(int argc, char *argv[])
@@ -41,8 +44,8 @@ huffman_config *parseArgs(int argc, char *argv[])
   config->out = (char *)malloc(HUFFMAN_FILE_MAX_SIZE);
 
   strcpy(config->inPath, "/input/path.txt");
-  strcpy(config->in, "this is /input/path.txt\n\n testing new lines etc   1942 flows \t\n");
   strcpy(config->outPath, "/output/path.huff");
+  strcpy(config->in, "RAW\nRAW\nRAW\nRAW\nRAW\nRAW\nRAW\nRAW\nRAW\nRAW\nRAW\nRAW\nRAW\nRAW\n");
   strcpy(config->out, "CONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\nCONVERTED\n");
   config->action = 1;
   return config;
@@ -50,12 +53,30 @@ huffman_config *parseArgs(int argc, char *argv[])
 
 char *convert(huffman_config *config)
 {
-  printf("huffman_convert\n");
+  printf("huffman_convert:\n\t");
+  switch (config->action)
+  {
+  case 0:
+    printf("ERROR");
+    break;
+  case 1:
+    printf("ENCODING");
+    break;
+  case 2:
+    printf("DECODING");
+    break;
+  default:
+    printf("??????????");
+    // TODO: throw exception
+    break;
+  }
+
+  printf(" %s -> %s\n", config->inPath, config->outPath);
   return 0;
 }
 
 int save(char *output, char *outputPath)
 {
-  printf("huffman_save\n");
+  printf("huffman_save:\n\tsaving to %s\n", outputPath);
   return 0;
 }
