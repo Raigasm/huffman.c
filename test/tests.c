@@ -33,15 +33,27 @@ static char *test_HUFF_read()
   log_info("> test/test_HUFF_read");
   mu_assert("test_HUFF_read not yet implemented", 0);
 }
-static char *test_HUFF_generate()
+static char *test_HUFF_create()
 {
-  log_info("> test/test_HUFF_generate");
-  mu_assert("test_HUFF_generate not yet implemented", 0);
+  log_info("> test/test_HUFF_create");
+  mu_assert("test_HUFF_create not yet implemented", 0);
 }
+
+static char *test_HUFF_save()
+{
+  log_info("> test/test_HUFF_save");
+  mu_assert("test_HUFF_save not yet implemented", 0);
+}
+
 static char *test_HUFF_meta_create()
 {
   log_info("> test/test_HUFF_meta_create");
-  mu_assert("test_HUFF_meta_create not yet implemented", 0);
+  huff_meta *meta = HUFF_meta_create("foo", "bar", 13371337);
+  mu_assert("huff_meta_create should create a huff meta instance", meta != NULL);
+  mu_assert("huff_meta_create should set filename", strcmp("foo", meta->filename) == 0);
+  mu_assert("huff_meta_create should set extension", strcmp("bar", meta->extension) == 0);
+  mu_assert("huff_meta_create should set size", meta->size == 13371337);
+  return "huff_meta_create failed";
 }
 static char *test_HUFF_meta_delete()
 {
@@ -61,12 +73,14 @@ static char *test_HUFF_meta_deserialize()
 
 static char *test_huff_file()
 {
-  mu_run_suite(test_HUFF_read);
-  mu_run_suite(test_HUFF_generate);
   mu_run_suite(test_HUFF_meta_create);
   mu_run_suite(test_HUFF_meta_delete);
   mu_run_suite(test_HUFF_meta_serialize);
   mu_run_suite(test_HUFF_meta_deserialize);
+  mu_run_suite(test_HUFF_read);
+  mu_run_suite(test_HUFF_create);
+  mu_run_suite(test_HUFF_save);
+  return (char *)0;
 }
 
 /**  TODO: min-heap.h tests
