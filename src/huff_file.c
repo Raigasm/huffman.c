@@ -2,7 +2,7 @@
 #include "huff_file.h"
 #include "character-frequency.h"
 
-huff_meta *HUFF_meta_create(char *filename, char *extension, int size)
+huff_meta *foobar(char *filename, char *extension, int size)
 {
   log_info("creating meta file for %s.%s (%i)", filename, extension, size);
   huff_meta *output = malloc(sizeof(huff_meta));

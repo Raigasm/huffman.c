@@ -1,4 +1,4 @@
-#include "../src/log.h"
+#include "log.h"
 #include "../lib/minunit.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,10 +7,10 @@
 /** 
  * Module Test Files
  **/
-#include "../src/huffman.h"
-#include "../src/min-heap.h"
-#include "../src/character-frequency.h"
-#include "../src/huff_file.h"
+#include "huffman.h"
+#include "min-heap.h"
+#include "character-frequency.h"
+#include "huff_file.h"
 
 // Tracking Globals
 int tests_run = 0;
@@ -48,7 +48,7 @@ static char *test_HUFF_save()
 static char *test_HUFF_meta_create()
 {
   log_info("> test/test_HUFF_meta_create");
-  huff_meta *meta = HUFF_meta_create("foo", "bar", 13371337);
+  huff_meta *meta = foobar("foo", "bar", 13371337);
   mu_assert("huff_meta_create should create a huff meta instance", meta != NULL);
   mu_assert("huff_meta_create should set filename", strcmp("foo", meta->filename) == 0);
   mu_assert("huff_meta_create should set extension", strcmp("bar", meta->extension) == 0);

@@ -6,8 +6,8 @@ all: clean huffman-codec
 huffman.o: log.o huff_file.o min-heap.o character-frequency.o src/huffman.c
 	$(CC) $(CFLAGS)	log.o  min-heap.o character-frequency.o huff_file.o src/huffman.c -c
 
-test: clean log.o huffman.o test/tests.c
-	$(CC) $(CFLAGS)	log.o huffman.o test/tests.c -o bin/huffman-codec
+test: log.o huffman.o src/tests.c
+	$(CC) $(CFLAGS)	log.o huffman.o src/huff_file.c src/tests.c -o bin/huffman-codec
 
 huffman-codec: log.o huffman.o src/main.c 
 	$(CC) $(CFLAGS) log.o huffman.o src/main.c -o bin/huffman-codec

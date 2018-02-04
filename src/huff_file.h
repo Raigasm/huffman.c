@@ -7,13 +7,9 @@
 #include <stdio.h>
 
 #include "log.h"
-#include "huff_file.h"
 #include "character-frequency.h"
 
-#ifndef CHARACTER_FREQUENCY_TABLE
-#define CHARACTER_FREQUENCY_TABLE
 typedef struct character_frequency_table character_frequency_table;
-#endif // CHARACTER_FREQUENCY_TABLE
 
 typedef struct huff_meta
 {
@@ -39,7 +35,7 @@ huff_file *HUFF_create(char *data, huff_file *output);
 FILE *HUFF_save(huff_file *input, char *path);
 
 // creates a huff_meta instance
-huff_meta *HUFF_meta_create(char *filename, char *extension, int size);
+extern huff_meta *foobar(char *filename, char *extension, int size);
 
 // TODO: cleanup memory on huff_meta
 // char *HUFF_meta_delete(char *input, char *output);
