@@ -11,5 +11,12 @@
       }
     ]
   },
-  "cSpell.words": ["heap", "heapify", "min"]
+  "cSpell.words": [
+    "heap",
+    "heapify",
+    "min"
+  ],
+  "files.associations": {
+    "huffman.h": "c"
+  }
 }
