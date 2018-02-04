@@ -28,45 +28,45 @@ static char *test_check_testing_works()
 /**  TODO: huff_file.h tests
  * ../src/huff_file.h 
  **/
-static char *test_HUF_read()
+static char *test_HUFF_read()
 {
-  log_info("> test/test_HUF_read");
-  mu_assert("test_HUF_read not yet implemented", 0);
+  log_info("> test/test_HUFF_read");
+  mu_assert("test_HUFF_read not yet implemented", 0);
 }
-static char *test_HUF_generate()
+static char *test_HUFF_generate()
 {
-  log_info("> test/test_HUF_generate");
-  mu_assert("test_HUF_generate not yet implemented", 0);
+  log_info("> test/test_HUFF_generate");
+  mu_assert("test_HUFF_generate not yet implemented", 0);
 }
-static char *test_HUF_meta_create()
+static char *test_HUFF_meta_create()
 {
-  log_info("> test/test_HUF_meta_create");
-  mu_assert("test_HUF_meta_create not yet implemented", 0);
+  log_info("> test/test_HUFF_meta_create");
+  mu_assert("test_HUFF_meta_create not yet implemented", 0);
 }
-static char *test_HUF_meta_delete()
+static char *test_HUFF_meta_delete()
 {
-  log_info("> test/test_HUF_meta_delete");
-  mu_assert("test_HUF_meta_delete not yet implemented", 0);
+  log_info("> test/test_HUFF_meta_delete");
+  mu_assert("test_HUFF_meta_delete not yet implemented", 0);
 }
-static char *test_HUF_meta_serialize()
+static char *test_HUFF_meta_serialize()
 {
-  log_info("> test/test_HUF_meta_serialize");
-  mu_assert("test_HUF_meta_serialize not yet implemented", 0);
+  log_info("> test/test_HUFF_meta_serialize");
+  mu_assert("test_HUFF_meta_serialize not yet implemented", 0);
 }
-static char *test_HUF_meta_deserialize()
+static char *test_HUFF_meta_deserialize()
 {
-  log_info("> test/test_HUF_meta_deserialize");
-  mu_assert("test_HUF_meta_deserialize not yet implemented", 0);
+  log_info("> test/test_HUFF_meta_deserialize");
+  mu_assert("test_HUFF_meta_deserialize not yet implemented", 0);
 }
 
 static char *test_huff_file()
 {
-  mu_run_suite(test_HUF_read);
-  mu_run_suite(test_HUF_generate);
-  mu_run_suite(test_HUF_meta_create);
-  mu_run_suite(test_HUF_meta_delete);
-  mu_run_suite(test_HUF_meta_serialize);
-  mu_run_suite(test_HUF_meta_deserialize);
+  mu_run_suite(test_HUFF_read);
+  mu_run_suite(test_HUFF_generate);
+  mu_run_suite(test_HUFF_meta_create);
+  mu_run_suite(test_HUFF_meta_delete);
+  mu_run_suite(test_HUFF_meta_serialize);
+  mu_run_suite(test_HUFF_meta_deserialize);
 }
 
 /**  TODO: min-heap.h tests
@@ -90,12 +90,6 @@ static char *test_character_frequency()
 /**  TODO: huffman.h tests
  * ../src/huffman.h 
  **/
-static char *test_huffman()
-{
-  log_info("test_huffman test start");
-  mu_assert("test_huffman not implemented", 0);
-}
-
 static char *test_parseArgs()
 {
   mu_assert("test_parseArgs not yet implemented", 0);
@@ -111,13 +105,22 @@ static char *test_save()
   mu_assert("test_sav not yet implemented", 0);
 }
 
+static char *test_huffman()
+{
+  log_info("test_huffman test start");
+  mu_run_suite(test_parseArgs);
+  mu_run_suite(test_convert);
+  mu_run_suite(test_save);
+  mu_assert("test_huffman not implemented", 0);
+}
+
 // TODO: Complete list of tests
 static char *all_tests() ///
 {
   mu_run_suite(test_check_testing_works);
+  mu_run_suite(test_huff_file);
   mu_run_suite(test_min_heap);
   mu_run_suite(test_character_frequency);
-  mu_run_suite(test_huff_file);
   mu_run_suite(test_huffman);
 
   return 0;

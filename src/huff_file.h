@@ -4,13 +4,18 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdio.h>
 
-char *HUF_read(char *source, char *output);
-char *HUF_generate(char *input, char *output);
+typedef struct huff_meta huff_meta;
+typedef struct huff_file huff_file;
 
-char *HUF_meta_create(char *input, char *output);
-char *HUF_meta_delete(char *input, char *output);
-char *HUF_meta_serialize(char *input, char *output);
-char *HUF_meta_deserialize(char *input, char *ouput);
+char *HUFF_read(FILE *source, char *output);
+
+char *HUFF_generate(char *input, char *output);
+
+char *HUFF_meta_create(char *input, char *output);
+char *HUFF_meta_delete(char *input, char *output);
+char *HUFF_meta_serialize(char *input, char *output);
+char *HUFF_meta_deserialize(char *input, char *ouput);
 
 #endif //HUFFMAN_FILE_FORMAT
