@@ -8,6 +8,7 @@
 
 #include "log.h"
 #include "character-frequency.h"
+#include "../lib/parson/parson.h"
 
 // xxx
 
@@ -37,13 +38,13 @@ huff_file *HUFF_create(char *data, huff_file *output);
 FILE *HUFF_save(huff_file *input, char *path);
 
 // creates a huff_meta instance
-huff_meta *HUFF_meta_create(char *filename, char *extension, int size);
+huff_meta *HUFF_meta_create(char *filename, char *extension, long size);
 
 // TODO: cleanup memory on huff_meta
 // char *HUFF_meta_delete(char *input, char *output);
 
 // serializes a huff_meta into a string, to save
-char *HUFF_meta_serialize(char *input, char *output);
+char *HUFF_meta_serialize(huff_meta *input, char *output);
 
 // creates a huff_meta instance from written data
 huff_meta *HUFF_meta_deserialize(char *input, huff_meta *ouput);

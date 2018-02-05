@@ -48,11 +48,11 @@ static char *test_HUFF_save()
 static char *test_HUFF_meta_create()
 {
   log_info("> test/test_HUFF_meta_create");
-  huff_meta *meta = HUFF_meta_create("foo", "bar", 13371338);
+  huff_meta *meta = HUFF_meta_create("foo", "bar", 10241024);
   mu_assert("huff_meta_create should create a huff meta instance", meta != NULL);
   mu_assert("huff_meta_create should set filename", strcmp("foo", meta->filename) == 0);
   mu_assert("huff_meta_create should set extension", strcmp("bar", meta->extension) == 0);
-  mu_assert("huff_meta_create should set size", meta->size == 13371338);
+  mu_assert("huff_meta_create should set size", meta->size == 10241024);
   return (char *)0;
 }
 // static char *test_HUFF_meta_delete()
@@ -63,7 +63,35 @@ static char *test_HUFF_meta_create()
 static char *test_HUFF_meta_serialize()
 {
   log_info("> test/test_HUFF_meta_serialize");
-  mu_assert("test_HUFF_meta_serialize not yet implemented", 0);
+
+  /**
+   *  We want serialize to be able to take the huff meta with properties:
+   *  filename: "bar"
+   *  extension: "foo"
+   *  size: 10241024 
+   *  into a json object
+   * 
+   *  {
+   *   "meta": {
+   *     "filename": "bar",
+   *     "extension": "foo", 
+   *     "size": 10241024
+   *   }
+   * }
+   * 
+   **/
+
+  huff_meta *meta = HUFF_meta_create("bar", "foo", 10241024);
+  char output[1024];
+  HUFF_meta_serialize(meta, output);
+  char *expected = "{\"meta\":{\"filename\":\"bar\",\"extension\":\"foo\",\"size\":10241024}}";
+  bool match = strcmp(expected, output) == 0;
+  if (!match)
+  {
+    log_error("ERROR: expected\n%s\n\nactual\n%s", expected, output);
+  }
+  mu_assert("meta_serialize should serialize", match);
+  return (char *)0;
 }
 static char *test_HUFF_meta_deserialize()
 {
