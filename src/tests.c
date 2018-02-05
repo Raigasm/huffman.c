@@ -107,11 +107,11 @@ static char *test_HUFF_meta_deserialize()
 static char *test_huff_file()
 {
   mu_run_suite(test_HUFF_meta_create);
-  // mu_run_suite(test_HUFF_meta_delete);
+  // mu_run_suite(test_HUFF_meta_delete); TODO: test_huff_meta_delete
   mu_run_suite(test_HUFF_meta_serialize);
   mu_run_suite(test_HUFF_meta_deserialize);
-  mu_run_suite(test_HUFF_read);
   mu_run_suite(test_HUFF_create);
+  mu_run_suite(test_HUFF_read);
   mu_run_suite(test_HUFF_save);
   return (char *)0;
 }
