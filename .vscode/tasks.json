@@ -11,7 +11,11 @@
     {
       "label": "make test",
       "type": "shell",
-      "command": "make test && /bin/huffman-codec"
+      "command": "make test && /bin/huffman-codec",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
     }
   ]
 }

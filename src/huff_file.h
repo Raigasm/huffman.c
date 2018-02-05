@@ -9,6 +9,8 @@
 #include "log.h"
 #include "character-frequency.h"
 
+// xxx
+
 typedef struct character_frequency_table character_frequency_table;
 
 typedef struct huff_meta
@@ -35,7 +37,7 @@ huff_file *HUFF_create(char *data, huff_file *output);
 FILE *HUFF_save(huff_file *input, char *path);
 
 // creates a huff_meta instance
-extern huff_meta *foobar(char *filename, char *extension, int size);
+huff_meta *HUFF_meta_create(char *filename, char *extension, int size);
 
 // TODO: cleanup memory on huff_meta
 // char *HUFF_meta_delete(char *input, char *output);
