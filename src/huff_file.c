@@ -2,6 +2,7 @@
 #include "huff_file.h"
 #include "character-frequency.h"
 #include "../lib/parson/parson.h"
+#include <string.h>
 
 huff_meta *HUFF_meta_create(char *filename, char *extension, long size)
 {
@@ -31,5 +32,18 @@ char *HUFF_meta_serialize(huff_meta *input, char *output)
   json_free_serialized_string(serialized_string);
   json_value_free(root_value);
 
+  return output;
+}
+
+huff_meta *HUFF_meta_deserialize(char *input)
+{
+  log_info(">>HUFF_meta_deserialize");
+
+  JSON_Value *metaValue = json_parse_string_with_comments(input);
+  JSON_Object *metaObject = json_value_get_object(metaValue);
+  huff_meta *output = malloc(sizeof(huff_meta));
+  strcpy(output->filename, json_object_dotget_string(metaObject, "meta.filename"));
+  strcpy(output->extension, json_object_dotget_string(metaObject, "meta.extension"));
+  output->size = (int)json_object_dotget_value(metaObject, "meta.size");
   return output;
 }

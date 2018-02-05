@@ -47,6 +47,6 @@ huff_meta *HUFF_meta_create(char *filename, char *extension, long size);
 char *HUFF_meta_serialize(huff_meta *input, char *output);
 
 // creates a huff_meta instance from written data
-huff_meta *HUFF_meta_deserialize(char *input, huff_meta *ouput);
+huff_meta *HUFF_meta_deserialize(char *input);
 
 #endif //HUFFMAN_FILE_FORMAT

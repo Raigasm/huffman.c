@@ -95,8 +95,13 @@ static char *test_HUFF_meta_serialize()
 }
 static char *test_HUFF_meta_deserialize()
 {
-  log_info("> test/test_HUFF_meta_deserialize");
-  mu_assert("test_HUFF_meta_deserialize not yet implemented", 0);
+  /** now we take the json and try and get a huff_meta out of it)
+   **/
+  huff_meta *meta = HUFF_meta_deserialize("{\"meta\":{\"filename\":\"bar2\",\"extension\":\"foo2\",\"size\":123456789}}");
+  mu_assert("deserialize: filename", strcmp(meta->filename, "bar23") == 0);
+  mu_assert("deserialize: extension", strcmp(meta->extension, "foo23") == 0);
+  mu_assert("deserialize: size", meta->size == 123456789);
+  return 0;
 }
 
 static char *test_huff_file()
