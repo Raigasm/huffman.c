@@ -4,15 +4,15 @@
 #include "../lib/parson/parson.h"
 #include <string.h>
 
-huff_meta *HUFF_meta_create(char *filename, char *extension, long size)
+huff_meta *HUFF_meta_create(char *filename, char *extension, unsigned long size)
 {
-  log_info("creating meta file for %s.%s (%i)", filename, extension, size);
+  log_info("creating meta file for %s.%s (%ld)", filename, extension, size);
   huff_meta *output = malloc(sizeof(huff_meta));
   output->filename = malloc(strlen(filename) + 1);
   output->extension = malloc(strlen(extension) + 1);
   strcpy(output->filename, filename);
   strcpy(output->extension, extension);
-  output->size = size;
+  output->size = (unsigned long)size;
 
   return output;
 }
@@ -41,9 +41,9 @@ huff_meta *HUFF_meta_deserialize(char *input)
 
   JSON_Value *metaValue = json_parse_string_with_comments(input);
   JSON_Object *metaObject = json_value_get_object(metaValue);
-  huff_meta *output = malloc(sizeof(huff_meta));
-  strcpy(output->filename, json_object_dotget_string(metaObject, "meta.filename"));
-  strcpy(output->extension, json_object_dotget_string(metaObject, "meta.extension"));
-  output->size = (int)json_object_dotget_value(metaObject, "meta.size");
+  const char *filename = json_object_dotget_string(metaObject, "meta.filename");
+  const char *extension = json_object_dotget_string(metaObject, "meta.extension");
+  unsigned long size = (unsigned long)json_object_dotget_number(metaObject, "meta.size");
+  huff_meta *output = HUFF_meta_create((char *)filename, (char *)extension, size);
   return output;
 }

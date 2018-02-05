@@ -38,7 +38,7 @@ huff_file *HUFF_create(char *data, huff_file *output);
 FILE *HUFF_save(huff_file *input, char *path);
 
 // creates a huff_meta instance
-huff_meta *HUFF_meta_create(char *filename, char *extension, long size);
+huff_meta *HUFF_meta_create(char *filename, char *extension, unsigned long size);
 
 // TODO: cleanup memory on huff_meta
 // char *HUFF_meta_delete(char *input, char *output);
