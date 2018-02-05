@@ -28,22 +28,6 @@ static char *test_check_testing_works()
 /**  TODO: huff_file.h tests
  * ../src/huff_file.h 
  **/
-static char *test_HUFF_read()
-{
-  log_info("> test/test_HUFF_read");
-  mu_assert("test_HUFF_read not yet implemented", 0);
-}
-static char *test_HUFF_create()
-{
-  log_info("> test/test_HUFF_create");
-  mu_assert("test_HUFF_create not yet implemented", 0);
-}
-
-static char *test_HUFF_save()
-{
-  log_info("> test/test_HUFF_save");
-  mu_assert("test_HUFF_save not yet implemented", 0);
-}
 
 static char *test_HUFF_meta_create()
 {
@@ -104,6 +88,40 @@ static char *test_HUFF_meta_deserialize()
   return 0;
 }
 
+static char *test_HUFF_create()
+{
+  log_info("> test/test_HUFF_create");
+
+  // create a meta
+  huff_meta *meta = HUFF_meta_create("foobar", "txt", 13371337);
+  // fake data string
+  char *data = "loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum";
+  // create huff
+  huff_file *huff = HUFF_create(meta, data);
+  // check meta
+  huff_meta *meta_reference = huff->meta;
+  mu_assert("huff_create: meta should have same filename", strcmp(meta_reference->filename, "foobar") == 0);
+  mu_assert("huff_create: meta should have same extension", strcmp(meta_reference->extension, "txt") == 0);
+  mu_assert("huff_create: meta should have same size", meta_reference->size == 13371337);
+
+  // check data
+  mu_assert("huff_create: meta should have same data", strcmp(huff->data, data) == 0);
+
+  mu_assert("test_HUFF_create not yet implemented", 0);
+}
+
+static char *test_HUFF_write()
+{
+  log_info("> test/test_HUFF_write");
+  mu_assert("test_HUFF_write not yet implemented", 0);
+}
+
+static char *test_HUFF_read()
+{
+  log_info("> test/test_HUFF_read");
+  mu_assert("test_HUFF_read not yet implemented", 0);
+}
+
 static char *test_huff_file()
 {
   mu_run_suite(test_HUFF_meta_create);
@@ -111,8 +129,8 @@ static char *test_huff_file()
   mu_run_suite(test_HUFF_meta_serialize);
   mu_run_suite(test_HUFF_meta_deserialize);
   mu_run_suite(test_HUFF_create);
+  mu_run_suite(test_HUFF_write);
   mu_run_suite(test_HUFF_read);
-  mu_run_suite(test_HUFF_save);
   return (char *)0;
 }
 
@@ -147,7 +165,7 @@ static char *test_convert()
   mu_assert("test_conver not yet implemented", 0);
 }
 
-static char *test_save()
+static char *test_create()
 {
   mu_assert("test_sav not yet implemented", 0);
 }
@@ -157,7 +175,7 @@ static char *test_huffman()
   log_info("test_huffman test start");
   mu_run_suite(test_parseArgs);
   mu_run_suite(test_convert);
-  mu_run_suite(test_save);
+  mu_run_suite(test_write);
   mu_assert("test_huffman not implemented", 0);
 }
 

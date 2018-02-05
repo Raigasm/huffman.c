@@ -47,3 +47,26 @@ huff_meta *HUFF_meta_deserialize(char *input)
   huff_meta *output = HUFF_meta_create((char *)filename, (char *)extension, size);
   return output;
 }
+
+/**
+ * typedef struct huff_file
+ * {
+  huff_meta *meta;
+  character_frequency_table *table;
+  char *data;
+* } huff_file;
+**/
+
+// creates a huff_file instance from a given huff_meta and data
+huff_file *HUFF_create(huff_meta *meta, char *data)
+{
+
+  log_info("creating huff_file object");
+
+  huff_file *output = malloc(sizeof(huff_file));
+
+  output->meta = meta;
+  output->data = data;
+
+  return output;
+}

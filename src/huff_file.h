@@ -10,8 +10,6 @@
 #include "character-frequency.h"
 #include "../lib/parson/parson.h"
 
-// xxx
-
 typedef struct character_frequency_table character_frequency_table;
 
 typedef struct huff_meta
@@ -29,7 +27,7 @@ typedef struct huff_file
 } huff_file;
 
 // creates a huff_file instance
-huff_file *HUFF_create(char *data, huff_file *output);
+huff_file *HUFF_create(huff_meta *meta, char *data);
 
 // reads a huff file from source and stores the content in huff_file
 // uses JSON parsing
