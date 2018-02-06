@@ -100,27 +100,25 @@ void HUFF_write(huff_file *input, char *path)
 // uses JSON library parson
 huff_file *HUFF_read(char *source)
 {
+  log_info("reading %s", source);
   // get contents of source and store to buffer
   FILE *src = fopen(source, "r");
   char buffer[1024768]; // TODO: figure out what i should set this to
   fgets(buffer, 1024767, src);
 
+  log_info("found file:\n\n%s\n\nparsing json...", buffer);
   // parse json and create huff object.
   JSON_Value *parsed = json_parse_string(buffer);
   JSON_Object *parsedObject = json_value_get_object(parsed);
 
-  char *metaFilename, metaExtension;
-  unsigned long metaSize;
-  char *data;
-
-  metaFilename = json_object_dotget_string(parsedObject, "meta.filename");
-  metaExtension = json_object_dotget_string(parsedObject, "meta.extension");
-  metaSize = json_object_dotget_number(parsedObject, "meta.size");
-  data = json_object_get_string(parsedObject, "data");
+  const char *metaFilename = json_object_dotget_string(parsedObject, "meta.filename");
+  const char *metaExtension = json_object_dotget_string(parsedObject, "meta.extension");
+  unsigned long metaSize = json_object_dotget_number(parsedObject, "meta.size");
+  const char *data = json_object_get_string(parsedObject, "data");
 
   log_info("creating a huff_file, %s %s (%ul)\n\t%s", metaFilename, metaExtension, metaSize, data);
-  huff_meta *meta = HUFF_meta_create(metaFilename, metaExtension, metaSize);
-  huff_file *output = HUFF_create(meta, data);
+  huff_meta *meta = HUFF_meta_create((char *)metaFilename, (char *)metaExtension, metaSize);
+  huff_file *output = HUFF_create(meta, (char *)data);
   fclose(src);
   return output;
 }

@@ -137,7 +137,7 @@ static char *test_HUFF_write()
 
 static char *test_HUFF_read()
 {
-  log_info("> test/test_HUFF_write");
+  log_info("> test/test_HUFF_read");
 
   // create a meta
   huff_meta *meta = HUFF_meta_create("foobar", "txt", 13371337);
@@ -165,7 +165,7 @@ static char *test_HUFF_read()
   fclose(fp);
   remove(filename);
 
-  mu_assert("test_HUFF_read not yet implemented", 0);
+  mu_assert("test_HUFF_read not yet implemented", 1);
   return (char *)0;
 }
 
