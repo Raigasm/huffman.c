@@ -107,7 +107,7 @@ static char *test_HUFF_create()
   // check data
   mu_assert("huff_create: meta should have same data", strcmp(huff->data, data) == 0);
 
-  mu_assert("test_HUFF_create not yet implemented", 0);
+  return (char *)0;
 }
 
 static char *test_HUFF_write()
@@ -117,7 +117,7 @@ static char *test_HUFF_write()
   // create a meta
   huff_meta *meta = HUFF_meta_create("foobar", "txt", 13371337);
   // fake data string
-  char *data = "loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum";
+  char *data = "loremipsum";
   // create huff
   huff_file *huff = HUFF_create(meta, data);
 
@@ -194,7 +194,7 @@ static char *test_huffman()
   log_info("test_huffman test start");
   mu_run_suite(test_parseArgs);
   mu_run_suite(test_convert);
-  mu_run_suite(test_write);
+  mu_run_suite(test_create);
   mu_assert("test_huffman not implemented", 0);
 }
 

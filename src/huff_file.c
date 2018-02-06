@@ -75,12 +75,23 @@ huff_file *HUFF_create(huff_meta *meta, char *data)
 void HUFF_write(huff_file *input, char *path)
 {
   // serialize input to JSON
-  const char *serialized = "blah blah blah\n";
+  JSON_Value *root_value = json_value_init_object();
+  JSON_Object *root_object = json_value_get_object(root_value);
+  char *serialized_string = NULL;
+  json_object_dotset_string(root_object, "meta.filename", input->meta->filename);
+  json_object_dotset_string(root_object, "meta.extension", input->meta->extension);
+  json_object_dotset_number(root_object, "meta.extension", input->meta->size);
+  json_object_set_string(root_object, "data", input->data);
+  serialized_string = json_serialize_to_string(root_value);
 
   // save to path
   const char *fileMode = "w+";
   FILE *output = fopen(path, fileMode);
-  fprintf(output, serialized);
+  fprintf(output, "%s", serialized_string);
+
+  // clean up and report
+  json_free_serialized_string(serialized_string);
+  json_value_free(root_value);
   fclose(output);
   log_info("HUFF file created at %s", path);
 }
