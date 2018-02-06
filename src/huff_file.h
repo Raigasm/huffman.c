@@ -34,7 +34,7 @@ void HUFF_write(huff_file *input, char *path);
 
 // reads a huff file from a path (source) and constructs a corresponding huff_file instance
 // uses JSON library parson
-huff_file *HUFF_read(char *source, huff_file *output);
+huff_file *HUFF_read(char *source);
 
 // creates a huff_meta instance
 huff_meta *HUFF_meta_create(char *filename, char *extension, unsigned long size);

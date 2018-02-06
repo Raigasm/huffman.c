@@ -80,7 +80,7 @@ void HUFF_write(huff_file *input, char *path)
   char *serialized_string = NULL;
   json_object_dotset_string(root_object, "meta.filename", input->meta->filename);
   json_object_dotset_string(root_object, "meta.extension", input->meta->extension);
-  json_object_dotset_number(root_object, "meta.extension", input->meta->size);
+  json_object_dotset_number(root_object, "meta.size", input->meta->size);
   json_object_set_string(root_object, "data", input->data);
   serialized_string = json_serialize_to_string(root_value);
 
@@ -98,7 +98,7 @@ void HUFF_write(huff_file *input, char *path)
 
 // reads a huff file from source and stores the content in huff_file
 // uses JSON library parson
-huff_file *HUFF_read(char *source, huff_file *output)
+huff_file *HUFF_read(char *source)
 {
   // get contents of source and store to buffer
   FILE *src = fopen(source, "r");
@@ -107,9 +107,20 @@ huff_file *HUFF_read(char *source, huff_file *output)
 
   // parse json and create huff object.
   JSON_Value *parsed = json_parse_string(buffer);
+  JSON_Object *parsedObject = json_value_get_object(parsed);
 
-  HUFF_meta_create(); // TODO: split source
-  HUFF_create();
+  char *metaFilename, metaExtension;
+  unsigned long metaSize;
+  char *data;
 
+  metaFilename = json_object_dotget_string(parsedObject, "meta.filename");
+  metaExtension = json_object_dotget_string(parsedObject, "meta.extension");
+  metaSize = json_object_dotget_number(parsedObject, "meta.size");
+  data = json_object_get_string(parsedObject, "data");
+
+  log_info("creating a huff_file, %s %s (%ul)\n\t%s", metaFilename, metaExtension, metaSize, data);
+  huff_meta *meta = HUFF_meta_create(metaFilename, metaExtension, metaSize);
+  huff_file *output = HUFF_create(meta, data);
   fclose(src);
+  return output;
 }

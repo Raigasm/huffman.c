@@ -15,7 +15,7 @@ uses a unique file extension: `.huff` for compressed files
   - [Tests](#tests)
   - [Reference](#reference)
   - [Structure](#structure)
-  - [Plans](#plans)
+  - [Plan](#plan)
   - [MinHeap module](#minheap-module)
     - [Binary Heaps in General](#binary-heaps-in-general)
     - [Min Heaps](#min-heaps)
@@ -77,9 +77,11 @@ make test && /bin/hoffman-encode #arguments
 
 * Makefile
 
-## Plans
+## Plan
 
-TODO: Mindnode export
+[For a markdown version, please see huffman-plan.md](./huffman-plan.m)
+
+[![Plan](./plan.png)](./huffman-plan.md)]
 
 ## MinHeap module
 
@@ -115,5 +117,4 @@ The following 3rd party libraries and technologies were used:
 Format is Use/Purpose - Name (License)
 
 * [ ] JSON - Parson (MIT) - https://github.com/kgabis/parson
-* Logging: TODO: find logging
-*
+* Logging - log.c (Free) - https://github.com/rxi/log.c

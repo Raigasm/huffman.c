@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-/** 
+/**
  * Module Test Files
  **/
 #include "huffman.h"
@@ -26,7 +26,7 @@ static char *test_check_testing_works()
 }
 
 /**  TODO: huff_file.h tests
- * ../src/huff_file.h 
+ * ../src/huff_file.h
  **/
 
 static char *test_HUFF_meta_create()
@@ -52,17 +52,17 @@ static char *test_HUFF_meta_serialize()
    *  We want serialize to be able to take the huff meta with properties:
    *  filename: "bar"
    *  extension: "foo"
-   *  size: 10241024 
+   *  size: 10241024
+   *
    *  into a json object
-   * 
    *  {
    *   "meta": {
    *     "filename": "bar",
-   *     "extension": "foo", 
+   *     "extension": "foo",
    *     "size": 10241024
    *   }
    * }
-   * 
+   *
    **/
 
   huff_meta *meta = HUFF_meta_create("bar", "foo", 10241024);
@@ -152,14 +152,21 @@ static char *test_HUFF_read()
   FILE *fp = fopen(filename, "r");
   char buffer[1024768];
   fgets(buffer, 1024768, fp);
-  
+
   // now we try to read it
-  huff_file *contents = HUFF_read
+  huff_file *contents = HUFF_read("test2.huff");
+
+  mu_assert("huff_read should match meta filename", strcmp(contents->meta->filename, meta->filename) == 0);
+  mu_assert("huff_read should match meta extension", strcmp(contents->meta->extension, meta->extension) == 0);
+  mu_assert("huff_read should match data", strcmp(contents->data, data) == 0);
+  mu_assert("huff_read should match size", contents->meta->size == 13371337);
+
   // delete the file now that we are done
   fclose(fp);
   remove(filename);
 
-  mu_assert("test_HUFF_read not yet implemented", 1);
+  mu_assert("test_HUFF_read not yet implemented", 0);
+  return (char *)0;
 }
 
 static char *test_huff_file()
@@ -175,7 +182,7 @@ static char *test_huff_file()
 }
 
 /**  TODO: min-heap.h tests
- * ../src/min-heap.h 
+ * ../src/min-heap.h
  **/
 static char *test_min_heap()
 {
@@ -184,7 +191,7 @@ static char *test_min_heap()
 }
 
 /**  TODO: character-frequency.h tests
- * ../src/character-frequency.h 
+ * ../src/character-frequency.h
  **/
 static char *test_character_frequency()
 {
@@ -193,7 +200,7 @@ static char *test_character_frequency()
 }
 
 /**  TODO: huffman.h tests
- * ../src/huffman.h 
+ * ../src/huffman.h
  **/
 static char *test_parseArgs()
 {
