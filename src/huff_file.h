@@ -29,12 +29,12 @@ typedef struct huff_file
 // creates a huff_file instance
 huff_file *HUFF_create(huff_meta *meta, char *data);
 
+// saves a huff file to the filesystem
+void HUFF_write(huff_file *input, char *path);
+
 // reads a huff file from source and stores the content in huff_file
 // uses JSON parsing
 huff_file *HUFF_read(FILE *source, huff_file *output);
-
-// saves a huff file to the filesystem
-FILE *HUFF_write(huff_file *input, char *path);
 
 // creates a huff_meta instance
 huff_meta *HUFF_meta_create(char *filename, char *extension, unsigned long size);

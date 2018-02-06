@@ -70,3 +70,17 @@ huff_file *HUFF_create(huff_meta *meta, char *data)
 
   return output;
 }
+
+// saves a huff file to the filesystem at the given path
+void HUFF_write(huff_file *input, char *path)
+{
+  // serialize input to JSON
+  const char *serialized = "blah blah blah\n";
+
+  // save to path
+  const char *fileMode = "w+";
+  FILE *output = fopen(path, fileMode);
+  fprintf(output, serialized);
+  fclose(output);
+  log_info("HUFF file created at %s", path);
+}
