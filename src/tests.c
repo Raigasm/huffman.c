@@ -130,7 +130,7 @@ static char *test_HUFF_write()
   // TODO: check file contents
   // delete the file now that we are done
   fclose(fp);
-  // remove(filename); TODO: remove
+  remove(filename);
 
   mu_assert("test_HUFF_write not yet implemented", 1);
 }
