@@ -1,6 +1,6 @@
 #include "log.h"
 #include "huff_file.h"
-#include "character-frequency.h"
+#include "character_frequency.h"
 #include "../lib/parson/parson.h"
 #include <string.h>
 

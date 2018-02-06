@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 #include "log.h"
-#include "character-frequency.h"
+#include "character_frequency.h"
 #include "../lib/parson/parson.h"
 
 typedef struct character_frequency_table character_frequency_table;

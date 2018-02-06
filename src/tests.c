@@ -9,7 +9,7 @@
  **/
 #include "huffman.h"
 #include "min-heap.h"
-#include "character-frequency.h"
+#include "character_frequency.h"
 #include "huff_file.h"
 
 // Tracking Globals
@@ -193,9 +193,50 @@ static char *test_min_heap()
 /**  TODO: character-frequency.h tests
  * ../src/character-frequency.h
  **/
+// void characterFrequency_generate(char *input, char *arr, int freq[]);
+static char *test_characterFrequency_generate()
+{
+  log_info("TEST: characterFrequency_generate");
+  mu_assert("characterFrequency_generate implemented", 0);
+  return (char *)0;
+}
+// void characterFrequency_print(char *arr, int freq[]);
+static char *test_characterFrequency_print()
+{
+  log_info("TEST: characterFrequency_print");
+  mu_assert("characterFrequency_print implemented", 0);
+  return (char *)0;
+}
+
+// void countCharacter(char input, char *arr, int freq[]);
+static char *test_indexOf()
+{
+  log_info("TEST: indexOf");
+  char input[6] = {'a', 'b', 'c', 'd', 'e', ' '};
+  mu_assert("indexOf implemented 'a'", characterFrequency_indexOf('a', input) == 0);
+  mu_assert("indexOf implemented 'b'", characterFrequency_indexOf('b', input) == 1);
+  mu_assert("indexOf implemented 'c'", characterFrequency_indexOf('c', input) == 2);
+  mu_assert("indexOf implemented 'd'", characterFrequency_indexOf('d', input) == 3);
+  mu_assert("indexOf implemented 'e'", characterFrequency_indexOf('e', input) == 4);
+  mu_assert("indexOf implemented ' '", characterFrequency_indexOf(' ', input) == 5);
+  return (char *)0;
+}
+
+// void countCharacter(char input, char *arr, int freq[]);
+static char *test_countCharacter()
+{
+  log_info("TEST: countCharacter");
+  mu_assert("countCharacter implemented", 0);
+  return (char *)0;
+}
+
 static char *test_character_frequency()
 {
   log_info("test_character_frequency test start");
+  mu_run_suite(test_indexOf);
+  mu_run_suite(test_characterFrequency_print);
+  mu_run_suite(test_countCharacter);
+  mu_run_suite(test_characterFrequency_generate);
   mu_assert("test_character_frequency not implemented", 0);
 }
 
@@ -227,12 +268,12 @@ static char *test_huffman()
 }
 
 // TODO: Complete list of tests
-static char *all_tests() ///
+static char *all_tests()
 {
   mu_run_suite(test_check_testing_works);
   mu_run_suite(test_huff_file);
-  mu_run_suite(test_min_heap);
   mu_run_suite(test_character_frequency);
+  mu_run_suite(test_min_heap);
   mu_run_suite(test_huffman);
 
   return 0;
