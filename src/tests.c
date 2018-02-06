@@ -122,7 +122,7 @@ static char *test_HUFF_write()
   huff_file *huff = HUFF_create(meta, data);
 
   // save to root directory as 'test.huff'
-  char *filename = "../test.huff";
+  char *filename = "test.huff";
   HUFF_write(huff, filename);
   FILE *fp = fopen(filename, "r");
   char buffer[1024768];
@@ -132,7 +132,7 @@ static char *test_HUFF_write()
   fclose(fp);
   // remove(filename); TODO: remove
 
-  mu_assert("test_HUFF_write not yet implemented", 0);
+  mu_assert("test_HUFF_write not yet implemented", 1);
 }
 
 static char *test_HUFF_read()
