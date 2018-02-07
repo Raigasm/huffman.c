@@ -265,13 +265,6 @@ static char *test_node_isLeaf()
   return (char *)0;
 }
 
-// minheap *node_swap(node **a, node **b);
-static char *test_node_swap()
-{
-  log_info("node_swap start");
-  mu_assert("node_swap implemented", 0);
-}
-
 // void node_add(minheap *heap, node *input);
 static char *test_node_add()
 {
@@ -284,7 +277,6 @@ static char *test_min_heap()
   log_info("test_min_heap test start");
   mu_run_suite(test_node_create);
   mu_run_suite(test_node_isLeaf);
-  mu_run_suite(test_node_swap);
   mu_run_suite(test_minHeap_create);
   mu_run_suite(test_minHeap_hasOnlyOne);
   mu_run_suite(test_minHeap_getMinNode);

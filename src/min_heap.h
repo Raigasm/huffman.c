@@ -45,7 +45,7 @@ node *node_create(char data, int freq);
 bool node_isLeaf(node *input);
 
 // swaps a and b
-minheap *node_swap(node **a, node **b);
+void node_swap(node **a, node **b);
 
 // adds a node to the minheap in the correct position
 void node_add(minheap *heap, node *input);

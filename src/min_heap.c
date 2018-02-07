@@ -75,9 +75,11 @@ bool node_isLeaf(node *input)
 }
 
 // swaps a and b
-minheap *node_swap(node **a, node **b)
+void node_swap(node **a, node **b)
 {
-  return (minheap *)0;
+  node *temp = *a;
+  *a = *b;
+  *b = temp;
 }
 
 // adds a node to the minheap in the correct position
