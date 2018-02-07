@@ -244,7 +244,22 @@ static char *test_node_create()
 static char *test_node_isLeaf()
 {
   log_info("node_isLeaf start");
-  mu_assert("node_isLeaf implemented", 0);
+  // example leaf
+  node *leaf = node_create('a', 42);
+  mu_assert("isLeaf should return true if node has no children", node_isLeaf(leaf));
+  // not a leaf (1 child)
+  node *hasChild = node_create('b', 15);
+  node *hasChildAlso = node_create('c', 21);
+  hasChild->lt = leaf;
+  hasChildAlso->rt = leaf;
+  mu_assert("isLeaf should return false if node has a child", !node_isLeaf(hasChild));
+  mu_assert("isLeaf should return false if node has a child (also)", !node_isLeaf(hasChildAlso));
+  // not a leaf (2 children)
+  node *hasChildren = node_create('d', 3);
+  hasChildren->lt = hasChild;
+  hasChildren->rt = hasChildAlso;
+  mu_assert("isLeaf should return false if node has two children", !node_isLeaf(hasChildren));
+  mu_assert("node_isLeaf implemented", 1);
 }
 
 // minheap *node_swap(node **a, node **b);

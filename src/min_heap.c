@@ -52,7 +52,7 @@ node *node_create(char data, int freq)
 // returns true if node has no children
 bool node_isLeaf(node *input)
 {
-  return (node *)0;
+  return (input->lt == input->rt) && (input->lt == NULL);
 }
 
 // swaps a and b
