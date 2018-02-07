@@ -18,9 +18,11 @@ int charfreq_indexOf(char input, char *arr)
   }
   return result;
 }
+g s
 
-// creates a charfreq_table
-charfreq_table *charfreq_table_create(unsigned long size)
+    // creates a charfreq_table
+    charfreq_table *
+    charfreq_table_create(unsigned long size)
 {
   charfreq_table *result = (charfreq_table *)malloc(sizeof(charfreq_table));
   result->character = (char *)malloc(sizeof(char) * size);

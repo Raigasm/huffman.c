@@ -197,10 +197,10 @@ static char *test_min_heap()
 static char *test_charfreq_generate()
 {
   log_info("TEST: charfreq_generate implemented", 0);
-  /** TEST DATA: 
+  /** TEST DATA:
   * raw: 'aaaabbbccd'
   * characters: ['a','b','c','d']
-  * frequencies: [4,3,2,1]  
+  * frequencies: [4,3,2,1]
   **/
 
   // make a table
@@ -220,10 +220,10 @@ static char *test_charfreq_generate()
 static char *test_charfreq_print()
 {
   log_info("TEST: charfreq_print");
-  /** TEST DATA: 
+  /** TEST DATA:
   * raw: 'aaaabbbccd'
   * characters: ['a','b','c','d']
-  * frequencies: [4,3,2,1]  
+  * frequencies: [4,3,2,1]
   **/
 
   // make a table
@@ -253,10 +253,10 @@ static char *test_indexOf()
 static char *test_charfreq_process()
 {
   log_info("TEST: charfreq_process");
-  /** TEST DATA: 
+  /** TEST DATA:
   * raw: 'aaaabbbccd'
   * characters: ['a','b','c','d']
-  * frequencies: [4,3,2,1]  
+  * frequencies: [4,3,2,1]
   **/
 
   // make a table
