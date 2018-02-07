@@ -41,7 +41,12 @@ node *minHeap_build_huffman(charfreq_table *data, int size)
 // creates a node instance
 node *node_create(char data, int freq)
 {
-  return (node *)0;
+  node *output = (node *)malloc(sizeof(node));
+  output->lt = NULL;
+  output->rt = NULL;
+  output->data = data;
+  output->frequency = freq;
+  return output;
 }
 
 // returns true if node has no children
