@@ -42,8 +42,8 @@ node *minHeap_build_huffman(charfreq_table *data, int size)
 node *node_create(char data, int freq)
 {
   node *output = (node *)malloc(sizeof(node));
-  output->lt = NULL;
-  output->rt = NULL;
+  output->lt = (node *)0;
+  output->rt = (node *)0;
   output->data = data;
   output->frequency = freq;
   return output;
@@ -52,7 +52,26 @@ node *node_create(char data, int freq)
 // returns true if node has no children
 bool node_isLeaf(node *input)
 {
-  return (input->lt == input->rt) && (input->lt == NULL);
+  log_info("isLeaf: ['%c',%i]\nchildren: %i %i", input->data, input->frequency, input->lt, input->rt);
+  if (input->lt == (node *)0)
+  {
+    log_info("no left child");
+  }
+  if (input->rt == (node *)0)
+  {
+    log_info("no right child");
+  }
+
+  if (input->lt == (node *)0 && input->rt == (node *)0)
+  {
+    log_info("leaf found");
+    return true;
+  }
+  else
+  {
+    log_info("not a leaf");
+    return false;
+  }
 }
 
 // swaps a and b

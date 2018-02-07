@@ -258,8 +258,11 @@ static char *test_node_isLeaf()
   node *hasChildren = node_create('d', 3);
   hasChildren->lt = hasChild;
   hasChildren->rt = hasChildAlso;
-  mu_assert("isLeaf should return false if node has two children", !node_isLeaf(hasChildren));
+  bool finalResult = node_isLeaf(hasChildren);
+  log_info("finalResult is %i", finalResult);
+  mu_assert("if not a leaf node, isLeaf should return false", finalResult == false);
   mu_assert("node_isLeaf implemented", 1);
+  return (char *)0;
 }
 
 // minheap *node_swap(node **a, node **b);
