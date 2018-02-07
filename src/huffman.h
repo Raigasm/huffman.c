@@ -14,9 +14,17 @@ int huffman_main(int argc, char *argv[]);
 huffman_config *parseArgs(int argc, char *argv[]);
 
 // parses the config, gets the relevant file, and outputs the encoded/decoded data
-char *convert(huffman_config *config);
+// uses encode/decode
+char *huffman_convert(huffman_config *config);
+
+// input: raw data, output: serialized huff file
+char *huffman_encode(char *input);
+
+// input: serialized huff file, output: raw data
+char *huffman_decode(char *input);
 
 // saves output from input (see: parseArgs and huffman_config) to outputPath
-int save(char *output, char *outputPath);
+// returns 0 if successful, otherwise 1
+int huffman_save(char *input, char *outputPath);
 
 #endif //huffman_h

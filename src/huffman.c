@@ -20,10 +20,9 @@ int huffman_main(int argc, char *argv[])
   // print extra arguments
   log_debug("huffman_main executed with %i arguments: %s %s", (argc - 1), argv[1], argv[2]);
 
-  huffman_config *config;
-  config = parseArgs(argc, argv);
-  convert(config);
-  save(config->out, config->outPath);
+  huffman_config *config = parseArgs(argc, argv);
+  char *output = huffman_convert(config);
+  int result = huffman_save(output, config->outPath);
 
   return 0;
 }
@@ -46,7 +45,7 @@ huffman_config *parseArgs(int argc, char *argv[])
   return config;
 }
 
-char *convert(huffman_config *config)
+char *huffman_convert(huffman_config *config)
 {
   log_debug("huffman_convert");
 
@@ -72,7 +71,19 @@ char *convert(huffman_config *config)
   return 0;
 }
 
-int save(char *output, char *outputPath)
+// input: raw data, output: serialized huff file
+char *huffman_encode(char *input)
+{
+  log_info("huffman_encode - processing %i characters", strlen(input));
+}
+
+// input: serialized huff file, output: raw data
+char *huffman_decode(char *input)
+{
+  log_info("huffman_decode - processing %i characters", strlen(input));
+}
+
+int huffman_save(char *output, char *outputPath)
 {
   log_debug("huffman_save:\tsaving to %s\n", outputPath);
   return 0;

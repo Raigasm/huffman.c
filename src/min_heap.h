@@ -35,9 +35,6 @@ bool minHeap_hasOnlyOne(minheap *minHeap);
 // maintains min-heap structure
 void minHeap_minHeapify(struct minheap *minHeap, int index);
 
-// creates a huffman tree based off the character frequency table
-node *minHeap_build_huffman(charfreq_table *data, int size);
-
 // creates a node instance
 node *node_create(char data, int freq);
 

@@ -11,6 +11,7 @@
 #include "min_heap.h"
 #include "character_frequency.h"
 #include "huff_file.h"
+#include "string_helpers.h"
 
 // Tracking Globals
 int tests_run = 0;
@@ -23,6 +24,48 @@ static char *test_check_testing_works()
 {
   mu_assert("Testing does not work", 7 == 7);
   return 0;
+}
+
+static char *test_getFilename()
+{
+  char *exampleA = "foobar.txt";
+  char *exampleB = "foobar.tar.gz";
+  char *exampleC = "badexample.";
+  char *exampleD = "./badexample";
+
+  char *resultA = string_getFileName(exampleA);
+  char *resultB = string_getFileName(exampleB);
+  char *resultC = string_getFileName(exampleC);
+  char *resultD = string_getFileName(exampleD);
+
+  char *expectedA = "foobar";
+  char *expectedB = "foobar";
+  char *expectedC = "badexample";
+  char *expectedD = "badexample";
+
+  if (strcmp(resultA, expectedA) != 0)
+  {
+    log_error("example A - exp: %s\tgot: %s", expectedA, resultA);
+  }
+  mu_assert("getFilename: failed for example A", strcmp(resultA, expectedA) == 0);
+
+  if (strcmp(resultB, expectedB) != 0)
+  {
+    log_error("example B - exp: %s\tgot: %s", expectedB, resultB);
+  }
+  mu_assert("getFilename: failed for example B", strcmp(resultB, expectedB) == 0);
+
+  if (strcmp(resultC, expectedC) != 0)
+  {
+    log_error("example C - exp: %s\tgot: %s", expectedC, resultC);
+  }
+  mu_assert("getFilename: failed for example C", strcmp(resultC, expectedC) == 0);
+
+  if (strcmp(resultD, expectedD) != 0)
+  {
+    log_error("example D - exp: %s\tgot: %s", expectedD, resultD);
+  }
+  mu_assert("getFilename: failed for example D", strcmp(resultD, expectedD) == 0);
 }
 
 /**  TODO: huff_file.h tests
@@ -230,16 +273,6 @@ static char *test_minHeap_minHeapify()
   mu_assert("minHeap_minHeapify implemented", 0);
 }
 
-// node *minHeap_build_huffman(charfreq_table *data, int size);
-static char *test_minHeap_build_huffman()
-{
-  log_info("minHeap_build_huffman start");
-  // test data: "aaaabbbccd"
-  // expected: [a,b,c,d]
-  //           [4,3,2,1]
-  mu_assert("minHeap_build_huffman implemented", 0);
-}
-
 // node *node_create(char data, int freq);
 static char *test_node_create()
 {
@@ -295,9 +328,8 @@ static char *test_min_heap()
   // mu_run_suite(test_minHeap_getMinNode); TODO: getMinNode test
   // mu_run_suite(test_minHeap_minHeapify); TODO: minHeapify test
   // mu_run_suite(test_node_add); // TODO: node_add test
-  // mu_run_suite(test_minHeap_build);
-  mu_run_suite(test_minHeap_build_huffman);
-  mu_assert("test_min_heap not implemented", 0);
+  // mu_run_suite(test_minHeap_build); // TODO: test_minHeap_build
+  mu_assert("test_min_heap not implemented", 1);
 }
 
 /**  TODO: character-frequency.h tests
