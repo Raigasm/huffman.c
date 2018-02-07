@@ -49,7 +49,10 @@ huffman_config *parseArgs(int argc, char *argv[])
     }
 
     huffman_config *result = (huffman_config *)malloc(sizeof(huffman_config));
-    result->in = malloc(HUFFMAN_FILE_MAX_SIZE);
+    result->in = (char *)malloc(sizeof(char) * HUFFMAN_FILE_MAX_SIZE);
+    FILE *fp = fopen(inputPath, "r");
+    fgets(result->in, HUFFMAN_FILE_MAX_SIZE - 1, fp);
+    fclose(fp);
     result->inPath = (char *)malloc(256);
     strcpy(result->inPath, inputPath);
     result->outPath = (char *)malloc(256);
@@ -70,6 +73,7 @@ huffman_config *parseArgs(int argc, char *argv[])
     }
     result->action = action;
     log_info("parseArgs finished:\npaths:\taction: %i\tin: %s\tout: %s\nin: %s", action, result->inPath, result->outPath, result->in);
+
     return result;
   }
 }
