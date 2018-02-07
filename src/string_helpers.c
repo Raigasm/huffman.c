@@ -38,7 +38,7 @@ char *sh_getExtension(char *input)
   char *result = malloc(size);
   char *filename = sh_getFilename(input);
   int filenameLength = strlen(filename);
-  strcpy(result, &input[filenameLength]);
+  strcpy(result, &input[filenameLength] + 1); // (skip the '.')
   log_info("extension is %s?", result);
   return result;
 }
