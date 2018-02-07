@@ -11,7 +11,7 @@ typedef struct huffman_config
   char *in;      // input data
   char *outPath; // output file path
   char *out;     // output data
-  int action;    // 0 = not yet determined, 1 = encode (raw -> HUFF), 2 = decode (HUFF -> raw)
+  int action;    // 0 = not yet determined, 1 = encode (raw -> HUFF), 2 = decode (HUFF -> raw), -1 = error (abort)
 } huffman_config;
 
 // the actual main for this whole package (huffman)

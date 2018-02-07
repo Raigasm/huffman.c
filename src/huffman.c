@@ -28,6 +28,7 @@ int huffman_main(int argc, char *argv[])
 
 huffman_config *parseArgs(int argc, char *argv[])
 {
+  bool abort = false; // set this to true on erroneous value found... ie. missing source file
   if (argc == 1)
   {
     log_error("Usage: huffman-codec <src> <output>");
@@ -52,7 +53,18 @@ huffman_config *parseArgs(int argc, char *argv[])
     result->in = (char *)malloc(sizeof(char) * HUFFMAN_FILE_MAX_SIZE);
     // TODO: check for file existence
     FILE *fp = fopen(inputPath, "r");
-    fgets(result->in, HUFFMAN_FILE_MAX_SIZE - 1, fp);
+    if (fp)
+    {
+      fgets(result->in, HUFFMAN_FILE_MAX_SIZE - 1, fp);
+    }
+    else
+    {
+      log_error("ERROR 404: File not found (%s)", inputPath);
+      strcpy(result->in, "FILE READ ERROR");
+      abort = true;
+      result->action = -1;
+    }
+
     fclose(fp);
     result->inPath = (char *)malloc(256);
     strcpy(result->inPath, inputPath);
