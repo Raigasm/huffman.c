@@ -50,6 +50,7 @@ huffman_config *parseArgs(int argc, char *argv[])
 
     huffman_config *result = (huffman_config *)malloc(sizeof(huffman_config));
     result->in = (char *)malloc(sizeof(char) * HUFFMAN_FILE_MAX_SIZE);
+    // TODO: check for file existence
     FILE *fp = fopen(inputPath, "r");
     fgets(result->in, HUFFMAN_FILE_MAX_SIZE - 1, fp);
     fclose(fp);
@@ -57,7 +58,7 @@ huffman_config *parseArgs(int argc, char *argv[])
     strcpy(result->inPath, inputPath);
     result->outPath = (char *)malloc(256);
     strcpy(result->outPath, outputPath);
-    result->out = (char *)malloc(HUFFMAN_FILE_MAX_SIZE);
+    result->out = (char *)malloc(sizeof(char) * (HUFFMAN_FILE_MAX_SIZE + 1));
     log_debug("parseArgs:\tin: %s\tout:%s", result->inPath, result->outPath);
     char *originalExtension = sh_getExtension(inputPath);
     int action;
