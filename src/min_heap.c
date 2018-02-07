@@ -30,9 +30,9 @@ node *minHeap_getMinNode(minheap *minHeap)
 }
 
 // returns true if minheap has only one member
-bool minHeap_hasOnlyOne(minheap *minHeap)
+bool minHeap_hasOnlyOne(minheap *input)
 {
-  return (bool)0;
+  return (input->size == 1);
 }
 
 // maintains min-heap structure

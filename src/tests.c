@@ -213,7 +213,14 @@ static char *test_minHeap_getMinNode()
 static char *test_minHeap_hasOnlyOne()
 {
   log_info("minHeap_hasOnlyOne start");
-  mu_assert("minHeap_hasOnlyOne implemented", 0);
+  minheap *shouldBeTrue = minHeap_create(100);
+  shouldBeTrue->size = 1;
+  minheap *shouldBeFalse = minHeap_create(100);
+  shouldBeFalse->size = 3;
+
+  mu_assert("minHeap_hasOnlyOne can detect singleton nodes properly", minHeap_hasOnlyOne(shouldBeTrue) == true);
+  mu_assert("minHeap_hasOnlyOne can detect populated heaps", minHeap_hasOnlyOne(shouldBeFalse) == false);
+  return (char *)0;
 }
 
 // void minHeap_minHeapify(struct minheap *minHeap, int index);
