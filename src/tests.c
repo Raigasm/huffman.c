@@ -527,13 +527,17 @@ static char *test_parseArgs()
 
   char *lipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae eros ipsum. Aliquam pellentesque blandit lectus, vel pellentesque eros efficitur nec. Quisque id imperdiet elit. Nulla sodales nisl eget suscipit commodo. Sed efficitur elementum erat semper placerat. Cras in sodales magna. Vestibulum non rhoncus nibh, eget condimentum dolor. Curabitur viverra pellentesque mollis. Donec at dui malesuada, sagittis neque non, rutrum felis. Curabitur dapibus eros vitae felis molestie tincidunt. Sed ultrices felis nec diam blandit consectetur. Mauris maximus a ante ac mattis.";
 
+  log_info("test_parseArgs: checking in path");
   mu_assert("parseArgs should handle txt input (in path)", strcmp(resultA->inPath, "lorem_ipsum_short.txt") == 0);
+  log_info("test_parseArgs: checking out path");
   mu_assert("parseArgs should handle txt input (out path)", strcmp(resultA->outPath, "lorem_ipsum_short.huff") == 0);
   if (strcmp(lipsum, resultA->in) != 0)
   {
     log_error("expected\n%s\n\ngot\n%s", lipsum, resultA->in);
   }
+  log_info("test_parseArgs: checking in data");
   mu_assert("parseArgs should take txt input into in", strcmp(lipsum, resultA->in) == 0);
+  log_info("test_parseArgs: checking action");
   mu_assert("parseArgs should handle txt input (action)", resultA->action = 1);
   mu_assert("parseArgs should handle huff input (in path)", strcmp(resultB->inPath, "lorem_ipsum_short.huff") == 0);
   mu_assert("parseArgs should handle huff input (out path)", strcmp(resultB->outPath, "output.txt") == 0);
