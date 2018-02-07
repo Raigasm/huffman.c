@@ -16,8 +16,8 @@ typedef struct node
 
 typedef struct minheap
 {
-  int size, capacity;     // current/max size
-  struct Node **contents; //array of pointers to nodes (minheap node instances)
+  int size, capacity; // current/max size
+  node **contents;    //array of pointers to nodes (minheap node instances)
 } minheap;
 
 // creates a minheap of a given capacity

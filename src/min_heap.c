@@ -5,7 +5,16 @@
 // creates a minheap of a given capacity
 minheap *minHeap_create(int capacity)
 {
-  return (minheap *)0;
+  // allocate memory
+  minheap *output = (minheap *)malloc(sizeof(minheap));
+  // initialize data
+  output->contents = (node **)malloc(output->capacity * sizeof(node *));
+  // initialize size
+  output->size = 0;
+  // initialize capacity
+  output->capacity = capacity;
+  log_info("created minheap with capacity %i", capacity);
+  return output;
 }
 
 // constructs an appropriately-sized minheap

@@ -189,7 +189,10 @@ static char *test_huff_file()
 static char *test_minHeap_create()
 {
   log_info("minHeap_create start");
-  mu_assert("minHeap_create implemented", 0);
+  minheap *result = minHeap_create(1337);
+  mu_assert("minHeap_create creates correct size", result->size == 0);
+  mu_assert("minHeap_create creates correct capacity", result->capacity == 1337);
+  return (char *)0;
 }
 
 // minheap *minHeap_build(minheap *minHeap);

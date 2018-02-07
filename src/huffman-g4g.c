@@ -54,7 +54,6 @@ struct node *node_create(char data, int freq)
 struct minheap *minHeap_create(int capacity)
 
 {
-
   struct minheap *minHeap = (struct minheap *)malloc(sizeof(struct minheap));
 
   // current size is 0
