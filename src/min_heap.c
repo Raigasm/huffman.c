@@ -49,12 +49,13 @@ bool minHeap_hasOnlyOne(minheap *input)
   return (input->size == 1);
 }
 
-// maintains min-heap structure
+// traverses the minheap->contents memory pool,
+// swapping all nodes appropriate in order to maintain a minheap structure (smallest node at top)
 void minHeap_minHeapify(struct minheap *input, int index)
 {
   int smallest = index;
-  int left = 2 * index + 1;
-  int right = 2 * index + 2;
+  int left = (2 * index) + 1;
+  int right = (2 * index) + 2;
 
   // compare to left child
   if (left < input->size && (input->contents[left]->frequency < input->contents[smallest]->frequency))
@@ -63,21 +64,18 @@ void minHeap_minHeapify(struct minheap *input, int index)
   }
 
   // compare to right child
-  if (right < input->size && (input->contents[right]->frequency < input->contents[smallest]->frequency ){
+  if (right < input->size && (input->contents[right]->frequency < input->contents[smallest]->frequency))
+  {
     smallest = right;
   }
 
+  // swap the current with the smallest
   if (index != smallest)
   {
-    node_swap(&input->array[smallest], &input->array[index]);
+    node_swap(&input->contents[smallest], &input->contents[index]);
     minHeap_minHeapify(input, smallest);
   }
-}
-
-// creates a huffman tree based off the character frequency table
-node *minHeap_build_huffman(charfreq_table *data, int size)
-{
-  return (node *)0;
+  return;
 }
 
 // creates a node instance
@@ -124,8 +122,21 @@ void node_swap(node **a, node **b)
   *b = temp;
 }
 
-// adds a node to the minheap in the correct position
-void node_add(minheap *heap, node *input) // TODO: node_add
+// adds a node to the minheap memory pool
+void node_add(minheap *heap, node *input)
 {
-  return;
+  int index = heap->size; // where we will insert the new node
+
+  // find where to insert in memory, swapping as appropriate
+  while (index && input->frequency < heap->contents[((index - 1) / 2)]->frequency)
+  {
+    heap->contents[index] = heap->contents[(index - 1) / 2];
+    index = (index - 1) / 2;
+  }
+
+  // insert node
+  heap->contents[index] = input;
+
+  // update size
+  heap->size = heap->size + 1;
 }
