@@ -41,9 +41,28 @@ bool minHeap_hasOnlyOne(minheap *input)
 }
 
 // maintains min-heap structure
-void minHeap_minHeapify(struct minheap *minHeap, int index)
+void minHeap_minHeapify(struct minheap *input, int index)
 {
-  return;
+  int smallest = index;
+  int left = 2 * index + 1;
+  int right = 2 * index + 2;
+
+  // compare to left child
+  if (left < input->size && (input->contents[left]->frequency < input->contents[smallest]->frequency))
+  {
+    smallest = left;
+  }
+
+  // compare to right child
+  if (right < input->size && (input->contents[right]->frequency < input->contents[smallest]->frequency ){
+    smallest = right;
+  }
+
+  if (index != smallest)
+  {
+    node_swap(&input->array[smallest], &input->array[index]);
+    minHeap_minHeapify(input, smallest);
+  }
 }
 
 // creates a huffman tree based off the character frequency table
@@ -59,7 +78,7 @@ node *node_create(char data, int freq)
   output->lt = (node *)0;
   output->rt = (node *)0;
   output->data = data;
-  output->frequency = freq;
+  output->frequencyuency = freq;
   return output;
 }
 
