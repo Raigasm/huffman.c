@@ -6,17 +6,16 @@
     {
       "label": "make all",
       "type": "shell",
-      "command": "make all && ./bin/huffman-codec"
+      "command": "make all && /bin/huffman-codec"
     },
     {
       "label": "make test",
       "type": "shell",
-      "command": "make test && ./bin/huffman-codec",
+      "command": "make test && /bin/huffman-codec",
       "group": {
         "kind": "build",
         "isDefault": true
-      },
-      "problemMatcher": ["$gcc"]
+      }
     }
   ]
 }

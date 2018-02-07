@@ -193,19 +193,18 @@ static char *test_min_heap()
 /**  TODO: character-frequency.h tests
  * ../src/character-frequency.h
  **/
-// void charfreq_generate(char *input, char *arr, int freq[]);
-static char *test_charfreq_generate()
+// void characterFrequency_generate(char *input, char *arr, int freq[]);
+static char *test_characterFrequency_generate()
 {
-  log_info("TEST: charfreq_generate implemented", 0);
+  log_info("TEST: characterFrequency_generate");
+  mu_assert("characterFrequency_generate implemented", 0);
   return (char *)0;
 }
-// void charfreq_print(char *arr, int freq[]);
-static char *test_charfreq_print()
+// void characterFrequency_print(char *arr, int freq[]);
+static char *test_characterFrequency_print()
 {
-  log_info("TEST: charfreq_print");
-  charfreq_table *testTable = malloc(sizeof(charfreq_table));
-
-  mu_assert("charfreq_print implemented", 0);
+  log_info("TEST: characterFrequency_print");
+  mu_assert("characterFrequency_print implemented", 0);
   return (char *)0;
 }
 
@@ -214,8 +213,12 @@ static char *test_indexOf()
 {
   log_info("TEST: indexOf");
   char input[6] = {'a', 'b', 'c', 'd', 'e', ' '};
-  mu_assert("indexOf implemented 'a'", charfreq_indexOf('e', input) == 4);
-  mu_assert("indexOf implemented ' '", charfreq_indexOf(' ', input) == 5);
+  mu_assert("indexOf implemented 'a'", characterFrequency_indexOf('a', input) == 0);
+  mu_assert("indexOf implemented 'b'", characterFrequency_indexOf('b', input) == 1);
+  mu_assert("indexOf implemented 'c'", characterFrequency_indexOf('c', input) == 2);
+  mu_assert("indexOf implemented 'd'", characterFrequency_indexOf('d', input) == 3);
+  mu_assert("indexOf implemented 'e'", characterFrequency_indexOf('e', input) == 4);
+  mu_assert("indexOf implemented ' '", characterFrequency_indexOf(' ', input) == 5);
   return (char *)0;
 }
 
@@ -231,9 +234,9 @@ static char *test_character_frequency()
 {
   log_info("test_character_frequency test start");
   mu_run_suite(test_indexOf);
+  mu_run_suite(test_characterFrequency_print);
   mu_run_suite(test_countCharacter);
-  mu_run_suite(test_charfreq_generate);
-  mu_run_suite(test_charfreq_print);
+  mu_run_suite(test_characterFrequency_generate);
   mu_assert("test_character_frequency not implemented", 0);
 }
 

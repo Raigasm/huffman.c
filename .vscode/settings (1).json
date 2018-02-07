@@ -1,0 +1,18 @@
+{
+  "saveAndRun": {
+    "commands": [
+      {
+        "match": "*/*.c",
+        "cmd": "make test && ./bin/huffman-codec"
+      },
+      {
+        "match": "*/*.h",
+        "cmd": "make test && ./bin/huffman-codec"
+      }
+    ]
+  },
+  "cSpell.words": ["heap", "heapify", "min"],
+  "files.associations": {
+    "huffman.h": "c"
+  }
+}

@@ -10,6 +10,8 @@
 #include "character_frequency.h"
 #include "../lib/parson/parson.h"
 
+typedef struct character_frequency_table character_frequency_table;
+
 typedef struct huff_meta
 {
   char *filename;
@@ -20,7 +22,7 @@ typedef struct huff_meta
 typedef struct huff_file
 {
   huff_meta *meta;
-  charfreq_table *table;
+  character_frequency_table *table;
   char *data;
 } huff_file;
 
