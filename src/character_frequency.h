@@ -11,9 +11,6 @@ typedef struct charfreq_table
     int *frequency;  // an array of frequencies, corresponds to characters
 } charfreq_table;
 
-// creates a charfreq_table
-charfreq_table *charfreq_table_create();
-
 /* 
 processes all of input, creating a character frequency table
 using countCharacters to update arr and freq
