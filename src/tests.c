@@ -234,6 +234,9 @@ static char *test_minHeap_minHeapify()
 static char *test_minHeap_build_huffman()
 {
   log_info("minHeap_build_huffman start");
+  // test data: "aaaabbbccd"
+  // expected: [a,b,c,d]
+  //           [4,3,2,1]
   mu_assert("minHeap_build_huffman implemented", 0);
 }
 
@@ -292,7 +295,7 @@ static char *test_min_heap()
   // mu_run_suite(test_minHeap_getMinNode); TODO: getMinNode test
   // mu_run_suite(test_minHeap_minHeapify); TODO: minHeapify test
   // mu_run_suite(test_node_add); // TODO: node_add test
-  mu_run_suite(test_minHeap_build);
+  // mu_run_suite(test_minHeap_build);
   mu_run_suite(test_minHeap_build_huffman);
   mu_assert("test_min_heap not implemented", 0);
 }

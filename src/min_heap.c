@@ -87,7 +87,7 @@ node *node_create(char data, int freq)
   output->lt = (node *)0;
   output->rt = (node *)0;
   output->data = data;
-  output->frequencyuency = freq;
+  output->frequency = freq;
   return output;
 }
 
@@ -125,7 +125,7 @@ void node_swap(node **a, node **b)
 }
 
 // adds a node to the minheap in the correct position
-void node_add(minheap *heap, node *input)
+void node_add(minheap *heap, node *input) // TODO: node_add
 {
   return;
 }
