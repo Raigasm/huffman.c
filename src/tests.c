@@ -290,8 +290,8 @@ static char *test_min_heap()
   mu_run_suite(test_minHeap_create);
   mu_run_suite(test_minHeap_hasOnlyOne);
   // mu_run_suite(test_minHeap_getMinNode); TODO: getMinNode test
-  mu_run_suite(test_minHeap_minHeapify);
-  mu_run_suite(test_node_add);
+  // mu_run_suite(test_minHeap_minHeapify); TODO: minHeapify test
+  // mu_run_suite(test_node_add); // TODO: node_add test
   mu_run_suite(test_minHeap_build);
   mu_run_suite(test_minHeap_build_huffman);
   mu_assert("test_min_heap not implemented", 0);

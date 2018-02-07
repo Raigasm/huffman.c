@@ -18,9 +18,18 @@ minheap *minHeap_create(int capacity)
 }
 
 // constructs an appropriately-sized minheap
-minheap *minHeap_build(minheap *minHeap)
+minheap *minHeap_build(minheap *input)
 {
-  return (minheap *)0;
+  int max, index; // max = total number of nodes, index = tracking variable for loop
+  max = input->size - 1;
+  index = (max - 1) / 2;
+
+  while (index >= 0)
+  {
+    minHeap_minHeapify(input, index);
+    --index;
+  }
+  log_info("built minHeap");
 }
 
 // returns the minimum node
