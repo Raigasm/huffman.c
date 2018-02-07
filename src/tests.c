@@ -229,14 +229,14 @@ static char *test_charfreq_print()
   // make a table
   charfreq_table *table = charfreq_generate("aaaabbbccd");
   char *output = charfreq_print(table);
-  char *expected = "{\"character\":['a','b','c','d'],\"frequency\":[4,3,2,1]}";
+  char *expected = "{\"character\":[\"a\",\"b\",\"c\",\"d\"],\"frequency\":[4,3,2,1]}";
   bool match = strcmp(expected, output) == 0;
   if (!match)
   {
     log_error("ERROR: expected\n%s\n\nactual\n%s", expected, output);
   }
 
-  mu_assert("charfreq_print implemented", 0);
+  mu_assert("charfreq_print implemented", match);
   return (char *)0;
 }
 
@@ -290,7 +290,7 @@ static char *test_character_frequency()
   mu_run_suite(test_charfreq_process);
   mu_run_suite(test_charfreq_generate);
   mu_run_suite(test_charfreq_print);
-  mu_assert("test_character_frequency not implemented", 0);
+  mu_assert("test_character_frequency implemented", 1);
 }
 
 /**  TODO: huffman.h tests
