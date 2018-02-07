@@ -231,7 +231,13 @@ static char *test_minHeap_build_huffman()
 static char *test_node_create()
 {
   log_info("node_create start");
-  mu_assert("node_create implemented", 0);
+  /*  Test nodes:
+    node testNodeA {character: ['a'], [1]}
+   */
+
+  node *testNode = node_create('a', 1);
+  mu_assert("node_create creates node with appropriate character", testNode->data = 'a');
+  mu_assert("node_create creates node with appropriate frequency", testNode->frequency = 1);
 }
 
 // bool node_isLeaf(node *input);
