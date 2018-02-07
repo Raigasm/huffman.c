@@ -24,9 +24,14 @@ minheap *minHeap_build(minheap *minHeap)
 }
 
 // returns the minimum node
-node *minHeap_getMinNode(minheap *minHeap)
+node *minHeap_getMinNode(minheap *input)
 {
-  return (node *)0;
+  node *output = input->contents[0];
+  input->contents[0] = input->contents[input->size - 1];
+  --input->size;
+  minHeap_minHeapify(input, 0);
+
+  return output;
 }
 
 // returns true if minheap has only one member

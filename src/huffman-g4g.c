@@ -110,17 +110,16 @@ int minHeap_hasOnlyOne(struct minheap *minHeap)
 
 // A standard function to extract
 // minimum value node from heap
-struct node *minHeap_getMinNode(struct minheap *minHeap)
+struct node *minHeap_getMinNode(struct minheap *input)
 
 {
 
-  struct node *temp = minHeap->array[0];
-  minHeap->array[0] = minHeap->array[minHeap->size - 1];
+  node *output = input->array[0];
+  input->array[0] = input->array[input->size - 1];
+  --input->size;
+  minHeap_minHeapify(input, 0);
 
-  --minHeap->size;
-  minHeap_minHeapify(minHeap, 0);
-
-  return temp;
+  return output;
 }
 
 // A utility function to insert
