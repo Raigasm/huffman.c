@@ -197,6 +197,23 @@ static char *test_min_heap()
 static char *test_charfreq_generate()
 {
   log_info("TEST: charfreq_generate implemented", 0);
+  /** TEST DATA: 
+  * raw: 'aaaabbbccd'
+  * characters: ['a','b','c','d']
+  * frequencies: [4,3,2,1]  
+  **/
+
+  // make a table
+  charfreq_table *table = charfreq_generate("aaaabbbccd");
+  mu_assert("charfreq_generate has correct 'a' index", table->character[0] == 'a');
+  mu_assert("charfreq_generate has correct 'b' index", table->character[1] == 'b');
+  mu_assert("charfreq_generate has correct 'd' index", table->character[3] == 'd');
+  mu_assert("charfreq_generate has correct 'c' index", table->character[2] == 'c');
+  mu_assert("charfreq_generate has correct 'a' frequency", table->frequency[0] == 4);
+  mu_assert("charfreq_generate has correct 'b' frequency", table->frequency[1] == 3);
+  mu_assert("charfreq_generate has correct 'c' frequency", table->frequency[2] == 2);
+  mu_assert("charfreq_generate has correct 'd' frequency", table->frequency[3] == 1);
+  mu_assert("charfreq_generate implemented", 1);
   return (char *)0;
 }
 // void charfreq_print(char *arr, int freq[]);
@@ -209,7 +226,6 @@ static char *test_charfreq_print()
   return (char *)0;
 }
 
-// void countCharacter(char input, char *arr, int freq[]);
 static char *test_indexOf()
 {
   log_info("TEST: indexOf");
@@ -219,11 +235,37 @@ static char *test_indexOf()
   return (char *)0;
 }
 
-// void countCharacter(char input, char *arr, int freq[]);
-static char *test_countCharacter()
+// void charfreq_process(char input, charfreq_table *table);
+static char *test_charfreq_process()
 {
-  log_info("TEST: countCharacter");
-  mu_assert("countCharacter implemented", 0);
+  log_info("TEST: charfreq_process");
+  /** TEST DATA: 
+  * raw: 'aaaabbbccd'
+  * characters: ['a','b','c','d']
+  * frequencies: [4,3,2,1]  
+  **/
+
+  // make a table
+  charfreq_table *table = charfreq_table_create(4);
+  charfreq_process('a', table);
+  charfreq_process('a', table);
+  charfreq_process('a', table);
+  charfreq_process('a', table);
+  charfreq_process('b', table);
+  charfreq_process('b', table);
+  charfreq_process('b', table);
+  charfreq_process('c', table);
+  charfreq_process('c', table);
+  charfreq_process('d', table);
+  mu_assert("charfreq_process has correct 'a' index", table->character[0] == 'a');
+  mu_assert("charfreq_process has correct 'b' index", table->character[1] == 'b');
+  mu_assert("charfreq_process has correct 'd' index", table->character[3] == 'd');
+  mu_assert("charfreq_process has correct 'c' index", table->character[2] == 'c');
+  mu_assert("charfreq_process has correct 'a' frequency", table->frequency[0] == 4);
+  mu_assert("charfreq_process has correct 'b' frequency", table->frequency[1] == 3);
+  mu_assert("charfreq_process has correct 'c' frequency", table->frequency[2] == 2);
+  mu_assert("charfreq_process has correct 'd' frequency", table->frequency[3] == 1);
+  mu_assert("charfreq_process implemented", 1);
   return (char *)0;
 }
 
@@ -231,7 +273,7 @@ static char *test_character_frequency()
 {
   log_info("test_character_frequency test start");
   mu_run_suite(test_indexOf);
-  mu_run_suite(test_countCharacter);
+  mu_run_suite(test_charfreq_process);
   mu_run_suite(test_charfreq_generate);
   mu_run_suite(test_charfreq_print);
   mu_assert("test_character_frequency not implemented", 0);
