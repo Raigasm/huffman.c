@@ -6,7 +6,19 @@
 
 char *sh_getFilename(char *input)
 {
-  char *result = "penis";
+  int inputLength = strlen(input);
+  char *result = malloc((sizeof(char) * inputLength + 1));
+  char *savePtr;
+  char *token = strtok_r(input, ".", &savePtr);
+
+  if (strlen(token) > 0)
+  {
+    strcpy(result, token);
+  }
+  else
+  {
+    strcpy(result, "filename");
+  }
 
   return result;
 }
