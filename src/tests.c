@@ -137,8 +137,29 @@ static char *test_HUFF_write()
 
 static char *test_HUFF_read()
 {
-  log_info("> test/test_HUFF_read");
-  mu_assert("test_HUFF_read not yet implemented", 0);
+  log_info("> test/test_HUFF_write");
+
+  // create a meta
+  huff_meta *meta = HUFF_meta_create("foobar", "txt", 13371337);
+  // fake data string
+  char *data = "loremipsum";
+  // create huff
+  huff_file *huff = HUFF_create(meta, data);
+
+  // save to root directory as 'test2.huff'
+  char *filename = "test2.huff";
+  HUFF_write(huff, filename);
+  FILE *fp = fopen(filename, "r");
+  char buffer[1024768];
+  fgets(buffer, 1024768, fp);
+  
+  // now we try to read it
+  huff_file *contents = HUFF_read
+  // delete the file now that we are done
+  fclose(fp);
+  remove(filename);
+
+  mu_assert("test_HUFF_read not yet implemented", 1);
 }
 
 static char *test_huff_file()

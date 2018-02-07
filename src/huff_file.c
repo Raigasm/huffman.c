@@ -95,3 +95,21 @@ void HUFF_write(huff_file *input, char *path)
   fclose(output);
   log_info("HUFF file created at %s", path);
 }
+
+// reads a huff file from source and stores the content in huff_file
+// uses JSON library parson
+huff_file *HUFF_read(char *source, huff_file *output)
+{
+  // get contents of source and store to buffer
+  FILE *src = fopen(source, "r");
+  char buffer[1024768]; // TODO: figure out what i should set this to
+  fgets(buffer, 1024767, src);
+
+  // parse json and create huff object.
+  JSON_Value *parsed = json_parse_string(buffer);
+
+  HUFF_meta_create(); // TODO: split source
+  HUFF_create();
+
+  fclose(src);
+}
