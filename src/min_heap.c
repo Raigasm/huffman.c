@@ -30,6 +30,7 @@ minheap *minHeap_build(minheap *input)
     --index;
   }
   log_info("built minHeap");
+  return input;
 }
 
 // returns the minimum node

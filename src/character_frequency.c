@@ -1,7 +1,7 @@
 #include "character_frequency.h"
 #include <string.h>
 #include "log.h"
-#include "../lib/parson/parson.h";
+#include "../lib/parson/parson.h"
 
 int charfreq_indexOf(char input, char *arr)
 {

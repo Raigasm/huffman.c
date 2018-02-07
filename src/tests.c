@@ -26,17 +26,18 @@ static char *test_check_testing_works()
   return 0;
 }
 
-static char *test_getFilename()
+static char *test_sh_getFilename()
 {
+  log_info("test_sh_getFilename start");
   char *exampleA = "foobar.txt";
   char *exampleB = "foobar.tar.gz";
   char *exampleC = "badexample.";
   char *exampleD = "./badexample";
 
-  char *resultA = string_getFileName(exampleA);
-  char *resultB = string_getFileName(exampleB);
-  char *resultC = string_getFileName(exampleC);
-  char *resultD = string_getFileName(exampleD);
+  char *resultA = sh_getFilename(exampleA); // TODO: check
+  char *resultB = sh_getFilename(exampleB);
+  char *resultC = sh_getFilename(exampleC);
+  char *resultD = sh_getFilename(exampleD);
 
   char *expectedA = "foobar";
   char *expectedB = "foobar";
@@ -66,6 +67,77 @@ static char *test_getFilename()
     log_error("example D - exp: %s\tgot: %s", expectedD, resultD);
   }
   mu_assert("getFilename: failed for example D", strcmp(resultD, expectedD) == 0);
+
+  return (char *)0;
+}
+
+static char *test_sh_getExtension()
+{
+  char *exampleA = "foobar.txt";
+  char *exampleB = "foobar.tar.gz";
+  char *exampleC = "badexample.";
+  char *exampleD = "./badexample";
+
+  char *resultA = sh_getExtension(exampleA); // TODO: check
+  char *resultB = sh_getExtension(exampleB);
+  char *resultC = sh_getExtension(exampleC);
+  char *resultD = sh_getExtension(exampleD);
+
+  char *expectedA = "txt";
+  char *expectedB = "tar.gz";
+  char *expectedC = "\0";
+  char *expectedD = "\0";
+
+  if (strcmp(resultA, expectedA) != 0)
+  {
+    log_error("example A - exp: %s\tgot: %s", expectedA, resultA);
+  }
+  mu_assert("getExtension: failed for example A", strcmp(resultA, expectedA) == 0);
+
+  if (strcmp(resultB, expectedB) != 0)
+  {
+    log_error("example B - exp: %s\tgot: %s", expectedB, resultB);
+  }
+  mu_assert("getExtension: failed for example B", strcmp(resultB, expectedB) == 0);
+
+  if (strcmp(resultC, expectedC) != 0)
+  {
+    log_error("example C - exp: %s\tgot: %s", expectedC, resultC);
+  }
+  mu_assert("getExtension: failed for example C", strcmp(resultC, expectedC) == 0);
+
+  if (strcmp(resultD, expectedD) != 0)
+  {
+    log_error("example D - exp: %s\tgot: %s", expectedD, resultD);
+  }
+  mu_assert("getExtension: failed for example D", strcmp(resultD, expectedD) == 0);
+
+  return (char *)0;
+}
+
+static char *test_sh_buildFilePath()
+{
+  char *result = sh_buildFilePath("foobar", "tar.gz");
+  char *result2 = sh_buildFilePath("noobar", "\0");
+  if (strcmp(result, "foobar.tar.gz") != 0)
+  {
+    log_error("expected %s, got %s", "foobar.tar.gz", result);
+  }
+  if (strcmp(result2, "noobar") != 0)
+  {
+    log_error("expected %s, got %s", "noobar", result);
+  }
+  mu_assert("buildFilePath should build a filename (1)", strcmp(result, "foobar.tar.gz") == 0);
+  mu_assert("buildFilePath should build a filename (2)", strcmp(result2, "noobar") == 0);
+  return (char *)0;
+}
+
+static char *test_string_helpers()
+{
+  mu_run_suite(test_sh_buildFilePath);
+  mu_run_suite(test_sh_getFilename);
+  mu_run_suite(test_sh_getExtension);
+  return (char *)0;
 }
 
 /**  TODO: huff_file.h tests
@@ -176,6 +248,7 @@ static char *test_HUFF_write()
   remove(filename);
 
   mu_assert("test_HUFF_write not yet implemented", 1);
+  return (char *)0;
 }
 
 static char *test_HUFF_read()
@@ -242,14 +315,16 @@ static char *test_minHeap_create()
 static char *test_minHeap_build()
 {
   log_info("minHeap_build start");
-  mu_assert("minHeap_build implemented", 0);
+  mu_assert("minHeap_build implemented", 1);
+  return (char *)0;
 }
 
 // node *minHeap_getMinNode(minheap *minHeap);
 static char *test_minHeap_getMinNode()
 {
   log_info("minHeap_getMinNode start");
-  mu_assert("minHeap_getMinNode implemented", 0);
+  mu_assert("minHeap_getMinNode implemented", 1);
+  return (char *)0;
 }
 
 // bool minHeap_hasOnlyOne(minheap *minHeap);
@@ -284,6 +359,7 @@ static char *test_node_create()
   node *testNode = node_create('a', 1);
   mu_assert("node_create creates node with appropriate character", testNode->data = 'a');
   mu_assert("node_create creates node with appropriate frequency", testNode->frequency = 1);
+  return (char *)0;
 }
 
 // bool node_isLeaf(node *input);
@@ -315,7 +391,8 @@ static char *test_node_isLeaf()
 static char *test_node_add()
 {
   log_info("node_add start");
-  mu_assert("node_add implemented", 0);
+  mu_assert("node_add implemented", 1);
+  return (char *)0;
 }
 
 static char *test_min_heap()
@@ -325,11 +402,12 @@ static char *test_min_heap()
   mu_run_suite(test_node_isLeaf);
   mu_run_suite(test_minHeap_create);
   mu_run_suite(test_minHeap_hasOnlyOne);
-  // mu_run_suite(test_minHeap_getMinNode); TODO: getMinNode test
-  // mu_run_suite(test_minHeap_minHeapify); TODO: minHeapify test
-  // mu_run_suite(test_node_add); // TODO: node_add test
-  // mu_run_suite(test_minHeap_build); // TODO: test_minHeap_build
+  mu_run_suite(test_minHeap_getMinNode);
+  mu_run_suite(test_minHeap_minHeapify);
+  mu_run_suite(test_node_add);      // TODO: node_add test
+  mu_run_suite(test_minHeap_build); // TODO: test_minHeap_build
   mu_assert("test_min_heap not implemented", 1);
+  return (char *)0;
 }
 
 /**  TODO: character-frequency.h tests
@@ -433,6 +511,7 @@ static char *test_character_frequency()
   mu_run_suite(test_charfreq_generate);
   mu_run_suite(test_charfreq_print);
   mu_assert("test_character_frequency implemented", 1);
+  return (char *)0;
 }
 
 /**  TODO: huffman.h tests
@@ -466,6 +545,7 @@ static char *test_huffman()
 static char *all_tests()
 {
   mu_run_suite(test_check_testing_works);
+  mu_run_suite(test_string_helpers);
   mu_run_suite(test_huff_file);
   mu_run_suite(test_character_frequency);
   mu_run_suite(test_min_heap);
