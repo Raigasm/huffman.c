@@ -2,69 +2,62 @@
 #include "log.h"
 #include <stdbool.h>
 
-typedef struct Node
+// creates a minheap of a given capacity
+minheap *minHeap_create(int capacity)
 {
-  char data;
-  unsigned frequency;
-  struct Node *lt, *rt; // children
-} Node;
-
-typedef struct MinHeap
-{
-  int size, capacity;     // current/max size
-  struct Node **contents; //array of pointers to nodes (minheap node instances)
-} MinHeap;
-
-MinHeap *minHeap_create()
-{
-  log_info(">> minHeap_create");
-  return (MinHeap *)0;
+  return (minheap *)0;
 }
 
-MinHeap *minHeap_build()
+// constructs an appropriately-sized minheap
+minheap *minHeap_build(minheap *minHeap)
 {
-  log_info(">> minHeap_build");
-  return (MinHeap *)0;
+  return (minheap *)0;
 }
 
-Node *minHeap_getMinNode()
+// returns the minimum node
+node *minHeap_getMinNode(minheap *minHeap)
 {
-  log_info(">> minHeap_getMinNode");
-  return (Node *)0;
+  return (node *)0;
 }
 
-bool minHeap_hasOnlyOne()
+// returns true if minheap has only one member
+bool minHeap_hasOnlyOne(minheap *minHeap)
 {
-  log_info(">> minHeap_hasOnlyOne");
-  return false;
+  return (bool)0;
 }
 
-MinHeap *minHeap_minHeapify()
+// maintains min-heap structure
+void minHeap_minHeapify(struct minheap *minHeap, int index)
 {
-  log_info(">> minHeap_minHeapify");
-  return (MinHeap *)0;
+  return;
 }
 
-Node *node_create()
+// creates a huffman tree based off the character frequency table
+node *minHeap_build_huffman(charfreq_table *data, int size)
 {
-  log_info(">> node_create");
-  return (Node *)0;
+  return (node *)0;
 }
 
-bool node_isLeaf()
+// creates a node instance
+node *node_create(char data, int freq)
 {
-  log_debug(">> node_isLeaf");
-  return false;
+  return (node *)0;
 }
 
-MinHeap *node_swap()
+// returns true if node has no children
+bool node_isLeaf(node *input)
 {
-  log_debug(">> node_swap");
-  return (MinHeap *)0;
+  return (node *)0;
 }
 
-Node *node_add()
+// swaps a and b
+minheap *node_swap(node **a, node **b)
 {
-  log_debug(">> node_add");
-  return (Node *)0;
+  return (minheap *)0;
+}
+
+// adds a node to the minheap in the correct position
+void node_add(minheap *heap, node *input)
+{
+  return;
 }
