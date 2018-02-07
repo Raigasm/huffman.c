@@ -220,7 +220,21 @@ static char *test_charfreq_generate()
 static char *test_charfreq_print()
 {
   log_info("TEST: charfreq_print");
-  charfreq_table *testTable = malloc(sizeof(charfreq_table));
+  /** TEST DATA: 
+  * raw: 'aaaabbbccd'
+  * characters: ['a','b','c','d']
+  * frequencies: [4,3,2,1]  
+  **/
+
+  // make a table
+  charfreq_table *table = charfreq_generate("aaaabbbccd");
+  char *output = charfreq_print(table);
+  char *expected = "{\"character\":['a','b','c','d'],\"frequency\":[4,3,2,1]}";
+  bool match = strcmp(expected, output) == 0;
+  if (!match)
+  {
+    log_error("ERROR: expected\n%s\n\nactual\n%s", expected, output);
+  }
 
   mu_assert("charfreq_print implemented", 0);
   return (char *)0;
