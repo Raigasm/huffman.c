@@ -9,9 +9,9 @@ char *sh_getFilename(char *input)
   int inputLength = strlen(input);
   log_info("getFilename: %s (length %i)", input, inputLength);
   int size = sizeof(char) * (inputLength + 1);
-  log_info("allocating %i memory", size);
+  // log_info("allocating %i memory", size);
   char *result = malloc(size);
-  log_info("allocated");
+  // log_info("allocated");
   char *savePtr;
   char *inputCopy = malloc(size);
   strcpy(inputCopy, input);
@@ -32,9 +32,14 @@ char *sh_getFilename(char *input)
 
 char *sh_getExtension(char *input)
 {
+  int inputLength = strlen(input);
   log_info("getExtension: %s", input);
-  char *result = "lol";
-
+  int size = sizeof(char) * (inputLength + 1);
+  char *result = malloc(size);
+  char *filename = sh_getFilename(input);
+  int filenameLength = strlen(filename);
+  strcpy(result, &input[filenameLength]);
+  log_info("extension is %s?", result);
   return result;
 }
 
