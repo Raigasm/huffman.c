@@ -8,7 +8,7 @@
  * Module Test Files
  **/
 #include "huffman.h"
-#include "min-heap.h"
+#include "min_heap.h"
 #include "character_frequency.h"
 #include "huff_file.h"
 
@@ -184,9 +184,90 @@ static char *test_huff_file()
 /**  TODO: min-heap.h tests
  * ../src/min-heap.h
  **/
+
+// minheap *minHeap_create(int capacity);
+static char *test_minHeap_create()
+{
+  log_info("minHeap_create start");
+  mu_assert("minHeap_create implemented", 0);
+}
+
+// minheap *minHeap_build(minheap *minHeap);
+static char *test_minHeap_build()
+{
+  log_info("minHeap_build start");
+  mu_assert("minHeap_build implemented", 0);
+}
+
+// node *minHeap_getMinNode(minheap *minHeap);
+static char *test_minHeap_getMinNode()
+{
+  log_info("minHeap_getMinNode start");
+  mu_assert("minHeap_getMinNode implemented", 0);
+}
+
+// bool minHeap_hasOnlyOne(minheap *minHeap);
+static char *test_minHeap_hasOnlyOne()
+{
+  log_info("minHeap_hasOnlyOne start");
+  mu_assert("minHeap_hasOnlyOne implemented", 0);
+}
+
+// void minHeap_minHeapify(struct minheap *minHeap, int index);
+static char *test_minHeap_minHeapify()
+{
+  log_info("minHeap_minHeapify start");
+  mu_assert("minHeap_minHeapify implemented", 0);
+}
+
+// node *minHeap_build_huffman(charfreq_table *data, int size);
+static char *test_minHeap_build_huffman()
+{
+  log_info("minHeap_build_huffman start");
+  mu_assert("minHeap_build_huffman implemented", 0);
+}
+
+// node *node_create(char data, int freq);
+static char *test_node_create()
+{
+  log_info("node_create start");
+  mu_assert("node_create implemented", 0);
+}
+
+// bool node_isLeaf(node *input);
+static char *test_node_isLeaf()
+{
+  log_info("node_isLeaf start");
+  mu_assert("node_isLeaf implemented", 0);
+}
+
+// minheap *node_swap(node **a, node **b);
+static char *test_node_swap()
+{
+  log_info("node_swap start");
+  mu_assert("node_swap implemented", 0);
+}
+
+// void node_add(minheap *heap, node *input);
+static char *test_node_add()
+{
+  log_info("node_add start");
+  mu_assert("node_add implemented", 0);
+}
+
 static char *test_min_heap()
 {
   log_info("test_min_heap test start");
+  mu_run_suite(test_node_create);
+  mu_run_suite(test_node_isLeaf);
+  mu_run_suite(test_node_swap);
+  mu_run_suite(test_minHeap_create);
+  mu_run_suite(test_minHeap_hasOnlyOne);
+  mu_run_suite(test_minHeap_getMinNode);
+  mu_run_suite(test_minHeap_minHeapify);
+  mu_run_suite(test_node_add);
+  mu_run_suite(test_minHeap_build);
+  mu_run_suite(test_minHeap_build_huffman);
   mu_assert("test_min_heap not implemented", 0);
 }
 

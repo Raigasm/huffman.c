@@ -3,17 +3,17 @@ CFLAGS=-std=c99 -Wall -O3 -g
 
 all: clean huffman-codec
 
-huffman.o: log.o huff_file.o min-heap.o character_frequency.o src/huffman.c
-	$(CC) $(CFLAGS)	log.o  min-heap.o character_frequency.o huff_file.o src/huffman.c -c
+huffman.o: log.o huff_file.o min_heap.o character_frequency.o src/huffman.c
+	$(CC) $(CFLAGS)	log.o  src/min_heap.c character_frequency.o huff_file.o src/huffman.c -c
 
 test: log.o huffman.o src/tests.c
-	$(CC) $(CFLAGS)	log.o huffman.o lib/parson/parson.c src/huff_file.c src/character_frequency.c  src/tests.c -o bin/huffman-codec
+	$(CC) $(CFLAGS)	log.o huffman.o src/min_heap.c lib/parson/parson.c src/huff_file.c src/character_frequency.c  src/tests.c -o bin/huffman-codec
 
 huffman-codec: log.o huffman.o src/main.c
 	$(CC) $(CFLAGS) log.o huffman.o src/main.c -o bin/huffman-codec
 
-min-heap.o: src/min-heap.c
-	$(CC) $(CFLAGS) src/min-heap.c -c
+min_heap.o: src/min_heap.c
+	$(CC) $(CFLAGS) src/min_heap.c -c
 
 huff_file.o: src/huff_file.c lib/parson/parson.c
 	$(CC) $(CFLAGS) lib/parson/parson.c src/huff_file.c -c

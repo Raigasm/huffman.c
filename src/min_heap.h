@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "character_frequency.h"
+
 typedef struct node
 {
   char data;
@@ -46,6 +48,6 @@ bool node_isLeaf(node *input);
 minheap *node_swap(node **a, node **b);
 
 // adds a node to the minheap in the correct position
-void *node_add(minheap *heap, node *input);
+void node_add(minheap *heap, node *input);
 
 #endif //MIN_HEAP_H

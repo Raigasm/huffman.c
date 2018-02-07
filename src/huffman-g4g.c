@@ -79,13 +79,13 @@ void node_swap(struct node **a,
 }
 
 // The standard minHeap_minHeapify function.
-void minHeap_minHeapify(struct minheap *minHeap, int idx)
+void minHeap_minHeapify(struct minheap *minHeap, int index)
 
 {
 
-  int smallest = idx;
-  int left = 2 * idx + 1;
-  int right = 2 * idx + 2;
+  int smallest = index;
+  int left = 2 * index + 1;
+  int right = 2 * index + 2;
 
   if (left < minHeap->size && minHeap->array[left]->freq < minHeap->array[smallest]->freq)
     smallest = left;
@@ -93,10 +93,10 @@ void minHeap_minHeapify(struct minheap *minHeap, int idx)
   if (right < minHeap->size && minHeap->array[right]->freq < minHeap->array[smallest]->freq)
     smallest = right;
 
-  if (smallest != idx)
+  if (smallest != index)
   {
     swa node(&minHeap->array[smallest],
-             &minHeap->array[idx]);
+             &minHeap->array[index]);
     minHeap_minHeapify(minHeap, smallest);
   }
 }
@@ -145,7 +145,7 @@ void node_add(struct minheap *minHeap,
 }
 
 // A standard funvtion to build min heap
-void buildMinHeap(struct minheap *minHeap)
+void minHeap_build(struct minheap *minHeap)
 
 {
 
@@ -178,8 +178,7 @@ int node_isLeaf(struct node *root)
 // equal to size and inserts all character of
 // data[] in min heap. Initially size of
 // min heap is equal to capacity
-struct minheap *minHeap_build(char data[], int freq[], int size)
-
+struct minheap *minHeap_build(charfreq_table *data, int size)
 {
 
   struct minheap *minHeap = minHeap_create(size);
@@ -188,7 +187,7 @@ struct minheap *minHeap_build(char data[], int freq[], int size)
     minHeap->array[i] = node_create(data[i], freq[i]);
 
   minHeap->size = size;
-  buildMinHeap(minHeap);
+  minHeap_build(minHeap);
 
   return minHeap;
 }

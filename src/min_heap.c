@@ -1,4 +1,4 @@
-#include "min-heap.h"
+#include "min_heap.h"
 #include "log.h"
 #include <stdbool.h>
 
