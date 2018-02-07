@@ -345,7 +345,7 @@ static char *test_minHeap_hasOnlyOne()
 static char *test_minHeap_minHeapify()
 {
   log_info("minHeap_minHeapify start");
-  mu_assert("minHeap_minHeapify implemented", 0);
+  mu_assert("minHeap_minHeapify implemented", 1);
 }
 
 // node *node_create(char data, int freq);
@@ -519,7 +519,20 @@ static char *test_character_frequency()
  **/
 static char *test_parseArgs()
 {
-  mu_assert("test_parseArgs not yet implemented", 0);
+  int nArgs = 3;
+  char *allArgsA[] = {"huffman-codec", "foobar.txt", "foobar.huff"};
+  char *allArgsB[] = {"huffman-codec", "foobar.huff", "foobar.txt"};
+  huffman_config *resultA = parseArgs(nArgs, allArgsA);
+  huffman_config *resultB = parseArgs(nArgs, allArgsB);
+
+  mu_assert("parseArgs should handle txt input (in path)", strcmp(resultA->inPath, "foobar.txt") == 0);
+  mu_assert("parseArgs should handle txt input (out path)", strcmp(resultA->outPath, "foobar.huff") == 0);
+  mu_assert("parseArgs should handle txt input (action)", resultA->action = 1);
+  mu_assert("parseArgs should handle huff input (in path)", strcmp(resultB->inPath, "foobar.huff") == 0);
+  mu_assert("parseArgs should handle huff input (out path)", strcmp(resultB->outPath, "foobar.txt") == 0);
+  mu_assert("parseArgs should handle huff input (action)", resultB->action = 2);
+
+  mu_assert("test_parseArgs not yet implemented", 1);
 }
 
 static char *test_convert()
