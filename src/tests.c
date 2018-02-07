@@ -42,7 +42,7 @@ static char *test_sh_getFilename()
   char *expectedA = "foobar";
   char *expectedB = "foobar";
   char *expectedC = "badexample";
-  char *expectedD = "badexample";
+  char *expectedD = "/badexample";
 
   if (strcmp(resultA, expectedA) != 0)
   {

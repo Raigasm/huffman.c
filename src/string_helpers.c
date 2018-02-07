@@ -7,9 +7,16 @@
 char *sh_getFilename(char *input)
 {
   int inputLength = strlen(input);
-  char *result = malloc((sizeof(char) * inputLength + 1));
+  log_info("getFilename: %s (length %i)", input, inputLength);
+  int size = sizeof(char) * (inputLength + 1);
+  log_info("allocating %i memory", size);
+  char *result = malloc(size);
+  log_info("allocated");
   char *savePtr;
-  char *token = strtok_r(input, ".", &savePtr);
+  char *inputCopy = malloc(size);
+  strcpy(inputCopy, input);
+  char *token = strtok(inputCopy, ".");
+  log_info("token: %s", token);
 
   if (strlen(token) > 0)
   {
@@ -25,6 +32,7 @@ char *sh_getFilename(char *input)
 
 char *sh_getExtension(char *input)
 {
+  log_info("getExtension: %s", input);
   char *result = "lol";
 
   return result;
