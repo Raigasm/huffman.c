@@ -1,5 +1,8 @@
 #include "huffman.h"
 #include "string_helpers.h"
+#include "character_frequency.h"
+#include "min_heap.h"
+#include "huff_file.h"
 #include "log.h"
 #include <string.h>
 #include <stdlib.h>
@@ -89,6 +92,11 @@ huffman_config *parseArgs(int argc, char *argv[])
 
     return result;
   }
+  else
+  {
+    log_error("parseArgs error - unknown argument count");
+    return (huffman_config *)0;
+  }
 }
 
 char *huffman_convert(huffman_config *config)
@@ -126,7 +134,7 @@ char *huffman_encode(huffman_config *config)
   if (config->action != 1)
   {
     log_error("encode failed: invalid config (expected 1 but config->action is %i)", config->action);
-    strcpy(output, "ERROR");
+    output = "ERROR";
   }
   else
   {
@@ -134,8 +142,21 @@ char *huffman_encode(huffman_config *config)
     log_debug("action code match. starting ENCODE..");
 
     // build character frequencies from source
+    charfreq_table *frequencies = charfreq_generate(config->in);
 
     // build minheap
+    int numNodes = strlen(frequencies->character);
+    minheap *heap = minHeap_create(numNodes);
+
+    for (int i = 0; i < numNodes; i++) // TODO: check if it should be (i <= numNodes) instead
+    {
+      // create node
+      node *newNode = node_create(frequencies->character[i], frequencies->frequency[i]);
+      heap->contents[i] = newNode;
+    }
+
+    heap->size = numNodes;
+    minHeap_build(heap);
 
     // encode data
 
@@ -148,7 +169,7 @@ char *huffman_encode(huffman_config *config)
     // store stringified huff_file in output
 
     // TODO: remove this
-    strcpy(output, "encoded data");
+    output = "ENCODED DATA";
   }
 
   return output;
@@ -167,6 +188,7 @@ char *huffman_decode(huffman_config *config)
   {
     log_debug("action code match. starting DECODE..");
   }
+  output = "decode error";
   return output;
 }
 
