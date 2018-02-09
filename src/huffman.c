@@ -21,7 +21,7 @@ int huffman_main(int argc, char *argv[])
   }
   else
   {
-    log_info("codec execution succeeded.");
+    log_debug("codec execution succeeded.");
   }
   return result;
 }
@@ -76,12 +76,12 @@ huffman_config *parseArgs(int argc, char *argv[])
     int action;
     if (strcmp(originalExtension, "huff") == 0)
     { // input was a huff file, lets decode
-      log_info("huff file detected, decoding");
+      log_debug("huff file detected, decoding");
       action = 2;
     }
     else
     {
-      log_info("non-huff file detected, encoding");
+      log_debug("non-huff file detected, encoding");
       action = 1;
     }
     result->action = action;
@@ -120,13 +120,54 @@ char *huffman_convert(huffman_config *config)
 // input: raw data, output: serialized huff file
 char *huffman_encode(huffman_config *config)
 {
+  int length = strlen(config->in) + 1;
+  char *output = (char *)malloc(sizeof(char) * length);
   log_info("huffman_encode - processing %i characters", strlen(config->in));
+  if (config->action != 1)
+  {
+    log_error("encode failed: invalid config (expected 1 but config->action is %i)", config->action);
+    strcpy(output, "ERROR");
+  }
+  else
+  {
+    // TODO: start encoding
+    log_debug("action code match. starting ENCODE..");
+
+    // build character frequencies from source
+
+    // build minheap
+
+    // encode data
+
+    // generate huff_file using encoded data
+
+    // print results for debugging
+
+    // save the huff_file
+
+    // store stringified huff_file in output
+
+    // TODO: remove this
+    strcpy(output, "encoded data");
+  }
+
+  return output;
 }
 
 // input: serialized huff file, output: raw data
 char *huffman_decode(huffman_config *config)
 {
+  char *output;
   log_info("huffman_decode - processing %i characters", strlen(config->in));
+  if (config->action != 2)
+  {
+    log_error("encode failed: invalid config (expected 2 but config->action is %i)", config->action);
+  }
+  else
+  {
+    log_debug("action code match. starting DECODE..");
+  }
+  return output;
 }
 
 int huffman_save(char *output, char *outputPath)

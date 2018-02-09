@@ -12,7 +12,7 @@ char *sh_getFilename(char *input)
   // log_info("allocating %i memory", size);
   char *result = malloc(size);
   // log_info("allocated");
-  char *savePtr;
+
   char *inputCopy = malloc(size);
   strcpy(inputCopy, input);
   char *token = strtok(inputCopy, ".");

@@ -346,6 +346,7 @@ static char *test_minHeap_minHeapify()
 {
   log_info("minHeap_minHeapify start");
   mu_assert("minHeap_minHeapify implemented", 1);
+  return (char *)0;
 }
 
 // node *node_create(char data, int freq);
@@ -544,16 +545,39 @@ static char *test_parseArgs()
   mu_assert("parseArgs should handle huff input (action)", resultB->action = 2);
 
   mu_assert("test_parseArgs not yet implemented", 1);
+  return (char *)0;
+}
+
+/** mock config
+* config->action = 1
+* config->inPath = original filename path etc
+* config->in = original file src
+* config->out = "";
+* config->outPath = "test.huff"
+*/
+
+static char *test_encode()
+{
+  mu_assert("test_encode not yet implemented", 0);
+  return (char *)0;
+}
+
+static char *test_decode()
+{
+  mu_assert("test_decode not yet implemented", 0);
+  return (char *)0;
 }
 
 static char *test_convert()
 {
-  mu_assert("test_conver not yet implemented", 0);
+  mu_assert("test_convert not yet implemented", 0);
+  return (char *)0;
 }
 
 static char *test_create()
 {
-  mu_assert("test_sav not yet implemented", 0);
+  mu_assert("test_create not yet implemented", 0);
+  return (char *)0;
 }
 
 static char *test_huffman()
@@ -562,7 +586,10 @@ static char *test_huffman()
   mu_run_suite(test_parseArgs);
   mu_run_suite(test_convert);
   mu_run_suite(test_create);
+  mu_run_suite(test_encode);
+  mu_run_suite(test_decode);
   mu_assert("test_huffman not implemented", 0);
+  return (char *)0;
 }
 
 // TODO: Complete list of tests
