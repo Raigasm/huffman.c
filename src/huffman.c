@@ -143,6 +143,7 @@ char *huffman_encode(huffman_config *config)
 
     // build character frequencies from source
     charfreq_table *frequencies = charfreq_generate(config->in);
+    log_info("character frequency table:\n%s", charfreq_print(frequencies));
 
     // build minheap
     int numNodes = strlen(frequencies->character);
