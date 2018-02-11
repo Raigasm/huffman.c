@@ -154,7 +154,9 @@ char *huffman_encode(huffman_config *config)
       // create node
       node *newNode = node_create(frequencies->character[i], frequencies->frequency[i]);
       heap->contents[i] = newNode;
+      printf("%c,", frequencies->character[i]);
     }
+    printf("\n");
 
     heap->size = numNodes;
     minHeap_build(heap);
