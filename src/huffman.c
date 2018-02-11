@@ -99,6 +99,28 @@ huffman_config *parseArgs(int argc, char *argv[])
   }
 }
 
+// every time we go left we add a '1'
+// every time we go left we add a '0'
+void huffman_generateCodes(int codes[], char *root, int index)
+{
+  if (root->lChild)
+  {
+    codes[index] = 0;
+    huffman_generateCodes(codes, root->lChild, index + 1);
+  }
+
+  if (root->rChild)
+  {
+    codes[index] = 1;
+    huffman_generateCodes(codes, root->rChild, index + 1);
+  }
+
+  if (node_isLeaf(root))
+  {
+    printf("%c: ", root->data);
+  }
+}
+
 char *huffman_convert(huffman_config *config)
 {
   log_debug("huffman_convert");
@@ -123,80 +145,111 @@ char *huffman_convert(huffman_config *config)
 
   printf(" %s -> %s\n", config->inPath, config->outPath);
   return 0;
-}
 
-// input: raw data, output: serialized huff file
-char *huffman_encode(huffman_config *config)
-{
-  int length = strlen(config->in) + 1;
-  char *output = (char *)malloc(sizeof(char) * length);
-  log_info("huffman_encode - processing %i characters", strlen(config->in));
-  if (config->action != 1)
+  // input: raw data, output: serialized huff file
+  char *huffman_encode(huffman_config * config)
   {
-    log_error("encode failed: invalid config (expected 1 but config->action is %i)", config->action);
-    output = "ERROR";
-  }
-  else
-  {
-    // TODO: start encoding
-    log_debug("action code match. starting ENCODE..");
-
-    // build character frequencies from source
-    charfreq_table *frequencies = charfreq_generate(config->in);
-    log_info("character frequency table:\n%s", charfreq_print(frequencies));
-
-    // build minheap
-    int numNodes = strlen(frequencies->character);
-    minheap *heap = minHeap_create(numNodes);
-
-    for (int i = 0; i < numNodes; i++) // TODO: check if it should be (i <= numNodes) instead
+    int length = strlen(config->in) + 1;
+    char *output = (char *)malloc(sizeof(char) * length);
+    log_info("huffman_encode - processing %i characters", strlen(config->in));
+    if (config->action != 1)
     {
-      // create node
-      node *newNode = node_create(frequencies->character[i], frequencies->frequency[i]);
-      heap->contents[i] = newNode;
-      printf("%c,", frequencies->character[i]);
+      log_error("encode failed: invalid config (expected 1 but config->action is %i)", config->action);
+      output = "ERROR";
     }
-    printf("\n");
+    else
+    {
+      // TODO: start encoding
+      log_debug("action code match. starting ENCODE..");
 
-    heap->size = numNodes;
-    minHeap_build(heap);
+      // build character frequencies from source
+      charfreq_table *frequencies = charfreq_generate(config->in);
+      log_info("character frequency table:\n%s", charfreq_print(frequencies));
 
-    // encode data
+      // build minheap
+      int numNodes = strlen(frequencies->character);
+      minheap *heap = minHeap_create(numNodes);
 
-    // generate huff_file using encoded data
+      for (int i = 0; i < numNodes; i++) // TODO: check if it should be (i <= numNodes) instead
+      {
+        // create node
+        node *newNode = node_create(frequencies->character[i], frequencies->frequency[i]);
+        heap->contents[i] = newNode;
+        printf("%c,", frequencies->character[i]);
+      }
+      printf("\n");
 
-    // print results for debugging
+      heap->size = numNodes;
+      minHeap_build(heap);
 
-    // save the huff_file
+      // encode data
+      node *lChild;
+      node *rChild;
+      node *root;
 
-    // store stringified huff_file in output
+      // transform minheap into huffman tree
+      while (!minHeap_hasOnlyOne(heap))
+      {
+        // extract nodes with lowest frequencies
 
-    // TODO: remove this
-    output = "ENCODED DATA";
+        lChild = minHeap_getMinNode(heap);
+        rChild = minHeap_getMinNode(heap);
+
+        // add sum node
+        int frequencyTotal = lChild->frequency + rChild->frequency;
+        root = node_create('|', frequencyTotal);
+        // rewire root
+        root->lChild = lChild;
+        root->rChild = rChild;
+
+        node_add(heap, root);
+      }
+      node *huffmanTreeRoot = minHeap_getMinNode(heap);
+
+      // generate huff_file using encoded data
+      log_debug("generating huff codes");
+      int codes[numNodes];
+      int encoded[numNodes];
+      huffman_generateCodes(codes, huffmanTreeRoot, 0);
+
+      // print results for debugging
+      log_debug("codes generated:");
+      for (int i = 0, i < numNodes, i++)
+      {
+        printf("'%i',", codes[i]);
+      }
+      printf("\n");
+
+      // save the huff_file
+
+      // store stringified huff_file in output
+
+      // TODO: remove this
+      output = "ENCODED DATA";
+    }
+
+    return output;
   }
 
-  return output;
-}
-
-// input: serialized huff file, output: raw data
-char *huffman_decode(huffman_config *config)
-{
-  char *output;
-  log_info("huffman_decode - processing %i characters", strlen(config->in));
-  if (config->action != 2)
+  // input: serialized huff file, output: raw data
+  char *huffman_decode(huffman_config * config)
   {
-    log_error("encode failed: invalid config (expected 2 but config->action is %i)", config->action);
+    char *output;
+    log_info("huffman_decode - processing %i characters", strlen(config->in));
+    if (config->action != 2)
+    {
+      log_error("encode failed: invalid config (expected 2 but config->action is %i)", config->action);
+    }
+    else
+    {
+      log_debug("action code match. starting DECODE..");
+    }
+    output = "decode error";
+    return output;
   }
-  else
-  {
-    log_debug("action code match. starting DECODE..");
-  }
-  output = "decode error";
-  return output;
-}
 
-int huffman_save(char *output, char *outputPath)
-{
-  log_debug("huffman_save:\tsaving to %s\n", outputPath);
-  return 0;
-}
+  int huffman_save(char *output, char *outputPath)
+  {
+    log_debug("huffman_save:\tsaving to %s\n", outputPath);
+    return 0;
+  }
