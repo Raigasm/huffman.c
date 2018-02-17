@@ -101,7 +101,7 @@ huffman_config *parseArgs(int argc, char *argv[])
 
 // every time we go left we add a '1'
 // every time we go left we add a '0'
-void huffman_generateCodes(int codes[], char *root, int index)
+void huffman_generateCodes(int codes[], node *root, int index)
 {
   if (root->lChild)
   {
@@ -140,6 +140,7 @@ char *huffman_convert(huffman_config *config)
   default:
     printf("??????????");
     // TODO: throw exception
+
     break;
   }
 

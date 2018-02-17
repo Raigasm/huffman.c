@@ -1,12 +1,17 @@
 {
-  "saveAndRun": {
+  "emeraldwalk.runonsave": {
     "commands": [
       {
-        "match": "*/*.c",
+        "match": ".*",
+        "isAsync": true,
+        "cmd": "echo 'I run for all files.'"
+      },
+      {
+        "match": "**/*.h",
         "cmd": "make test && ./bin/huffman-codec"
       },
       {
-        "match": "*/*.h",
+        "match": "**/*.h",
         "cmd": "make test && ./bin/huffman-codec"
       }
     ]

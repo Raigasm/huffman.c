@@ -32,11 +32,14 @@ charfreq_table *charfreq_generate(char *input)
   int length = strlen(input);
   unsigned long size = (unsigned long)length + 1;
   charfreq_table *output = charfreq_table_create(size);
-  log_info("generating char_freq_table of length %i", length);
   for (int i = 0; i < length; i++)
   {
     charfreq_process(input[i], output);
   }
+  // update n
+  int numberOfCharacters = strlen(output->character);
+  output->n = numberOfCharacters;
+  log_info("generating char_freq_table of length %i", output->n);
   return output;
 }
 
@@ -91,4 +94,16 @@ char *charfreq_print(charfreq_table *table)
   char *output = json_serialize_to_string(tableJSON);
   log_info("output: %s", output);
   return output;
+}
+
+void charfreq_updateCode(charfreq_table *table, int index, char *code)
+{
+  // TODO: implement updateCode
+  log_debug("updateCode(%i,%s)", index, code);
+  return;
+}
+char *charfreq_readCode(charfreq_table *table, int index)
+{
+  // TODO: implement readCode
+  return (char *)0;
 }

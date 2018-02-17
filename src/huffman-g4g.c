@@ -55,12 +55,9 @@ struct minheap *minHeap_create(int capacity)
 
 {
   struct minheap *minHeap = (struct minheap *)malloc(sizeof(struct minheap));
-
   // current size is 0
   minHeap->size = 0;
-
   minHeap->capacity = capacity;
-
   minHeap->array = (struct node **)malloc(minHeap->capacity * sizeof(struct node *));
   return minHeap;
 }
@@ -168,7 +165,6 @@ void printArr(int arr[], int n)
 int node_isLeaf(struct node *root)
 
 {
-
   return !(root->left) && !(root->right);
 }
 
