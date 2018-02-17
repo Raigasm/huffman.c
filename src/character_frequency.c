@@ -64,7 +64,7 @@ void charfreq_process(char input, charfreq_table *table)
   else
   {
     // increment frequency
-    log_debug(" %c++", input);
+    log_debug(" %c+", input);
     table->frequency[index]++;
   }
   return;
