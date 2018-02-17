@@ -58,11 +58,13 @@ void charfreq_process(char input, charfreq_table *table)
     table->character[i] = input;
     table->character[i + 1] = '\0';
     table->frequency[i] = 1;
+    log_debug("%c!", input);
     // set frequency to 1
   }
   else
   {
     // increment frequency
+    log_debug(" %c++", input);
     table->frequency[index]++;
   }
   return;
@@ -75,7 +77,7 @@ char *charfreq_print(charfreq_table *table)
   JSON_Object *tableObject = json_value_get_object(tableJSON);
   JSON_Array *characters = json_object_get_array(tableObject, "character");
   JSON_Array *freqs = json_object_get_array(tableObject, "frequency");
-
+  JSON_Array *codes = json_object_get_array(tableObject, "code");
   log_info("json object created");
 
   int i = 0;
@@ -86,6 +88,8 @@ char *charfreq_print(charfreq_table *table)
     sprintf(buffer, "%c", table->character[i]);
     json_array_append_string(characters, buffer);
     json_array_append_number(freqs, table->frequency[i]);
+    char *code = charfreq_code_read(table, table->character[i]);
+    json_array_append_string(codes, code);
     log_info("+ ['%c',%i]", table->character[i], table->frequency[i]);
     i++;
   }
@@ -96,14 +100,11 @@ char *charfreq_print(charfreq_table *table)
   return output;
 }
 
-void charfreq_updateCode(charfreq_table *table, int index, char *code)
+int charfreq_code_update(charfreq_table *table, char *code, int digit)
 {
-  // TODO: implement updateCode
-  log_debug("updateCode(%i,%s)", index, code);
-  return;
+  return 0;
 }
-char *charfreq_readCode(charfreq_table *table, int index)
+char *charfreq_code_read(charfreq_table *table, char input)
 {
-  // TODO: implement readCode
   return (char *)0;
 }

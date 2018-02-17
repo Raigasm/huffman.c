@@ -19,6 +19,12 @@ int tests_failed = 0;
 int suites_run = 0;
 int suites_failed = 0;
 
+void printExpected(char *expected, char *actual)
+{
+  log_error("expected: %s, actual: %s", expected, actual);
+  return;
+}
+
 // Quick check
 static char *test_check_testing_works()
 {
@@ -426,6 +432,7 @@ static char *test_charfreq_generate()
 
   // make a table
   charfreq_table *table = charfreq_generate("aaaabbbccd");
+  log_debug("test_charfreq_generate:\ntable\ncharacter:\n%c %c %c %c\nfrequency: %i %i %i %i", table->character[0], table->character[1], table->character[2], table->character[3], table->frequency[0], table->frequency[1], table->frequency[2], table->frequency[3]);
   mu_assert("charfreq_generate has correct 'a' index", table->character[0] == 'a');
   mu_assert("charfreq_generate has correct 'b' index", table->character[1] == 'b');
   mu_assert("charfreq_generate has correct 'd' index", table->character[3] == 'd');

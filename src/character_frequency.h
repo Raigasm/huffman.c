@@ -16,17 +16,13 @@ typedef struct charfreq_table
 // creates a charfreq_table
 charfreq_table *charfreq_table_create();
 
-void charfreq_updateCode(charfreq_table *table, int index, char *code); // TODO: implement
-char *charfreq_readCode(charfreq_table *table, int index);              // TODO: implement
-
 /*
 processes all of input, creating a character frequency table
 using countCharacters to update arr and freq
  */
 charfreq_table *charfreq_generate(char *input);
-charfreq_table *charfreq_code_update(char *code, int digit);
-char charfreq_code_read(char *code);
-int charfreq_code_maxLength(charfreq_table *input);
+int charfreq_code_update(charfreq_table *table, char *code, int digit);
+char *charfreq_code_read(charfreq_table *table, char input);
 
 // processes a character into a character frequency array pair
 void charfreq_process(char input, charfreq_table *table);
