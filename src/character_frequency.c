@@ -58,13 +58,13 @@ void charfreq_process(char input, charfreq_table *table)
     table->character[i] = input;
     table->character[i + 1] = '\0';
     table->frequency[i] = 1;
-    log_debug("%c!", input);
+    printf("%c,", input);
     // set frequency to 1
   }
   else
   {
     // increment frequency
-    log_debug(" %c+", input);
+    // log_debug(" %c+", input);
     table->frequency[index]++;
   }
   return;
