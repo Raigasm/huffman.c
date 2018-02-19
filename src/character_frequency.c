@@ -7,14 +7,14 @@ int charfreq_indexOf(char input, char *arr)
 {
   int result = -1;
   int i = 0;
-  while (arr[i] != '\0')
+  int max = strlen(arr);
+  for (i; i < max; i++)
   {
     if (arr[i] == input)
     {
       result = i;
-      break;
+      log_debug("indexOf: %c", i);
     }
-    i++;
   }
   return result;
 }
@@ -36,6 +36,7 @@ charfreq_table *charfreq_generate(char *input)
   {
     charfreq_process(input[i], output);
   }
+  printf("\n");
   // update n
   int numberOfCharacters = strlen(output->character);
   output->n = numberOfCharacters;
